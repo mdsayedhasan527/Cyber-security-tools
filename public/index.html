@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DARKNET | CYBER LAB</title>
+
+    <link rel="stylesheet"
+    href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">DARKNET<span>//</span></div>
+
+    <nav>
+        <a href="#home">HOME</a>
+        <a href="#tools">TOOLS</a>
+        <a href="#learning">LEARNING</a>
+        <a href="#about">ABOUT</a>
+    </nav>
+</header>
+
+<main id="home">
+
+    <p class="tag">[ CYBER SECURITY LAB ]</p>
+
+    <h1>
+        WELCOME TO<br>
+        <span>DARKNET</span>
+    </h1>
+
+    <p class="subtitle">
+        Explore the world of Cybersecurity.
+        Learn. Build. Secure.
+    </p>
+
+    <div class="terminal">
+        <p class="terminal-title">root@darknet:~</p>
+        <p id="typing"></p>
+        <span class="cursor">_</span>
+    </div>
+
+    <section id="tools">
+
+        <h2>/// CYBERSECURITY TOOLS</h2>
+
+        <p class="section-desc">
+            Explore popular cybersecurity tools and official resources.
+        </p>
+
+        <!-- NETWORKING -->
+
+        <h3 class="category-title">01. NETWORKING TOOLS</h3>
+
+        <div class="tools-grid">
+
+            <a class="tool-card" href="https://www.wireshark.org/"
+               target="_blank" rel="noopener noreferrer">
+                <img src="https://cdn.simpleicons.org/wireshark"
+                     alt="Wireshark"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                <span class="icon-fallback">W</span>
+                <div>
+                    <h3>Wireshark</h3>
+                    <p>Network Protocol Analyzer</p>
+                </div>
+                <span class="external">↗</span>
+            </a>
+
+            <a class="tool-card" href="https://nmap.org/"
+               target="_blank" rel="noopener noreferrer">
+                <img src="https://cdn.simpleicons.org/nmap"
+                     alt="Nmap"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                <span class="icon-fallback">N</span>
+                <div>
+                    <h3>Nmap</h3>
+                    <p>Network Discovery Tool</p>
+                </div>
+                <span class="external">↗</span>
+            </a>
+
+            <a class="tool-card" href="https://www.cloudflare.com/"
+               target="_blank" rel="noopener noreferrer">
+                <img src="https://cdn.simpleicons.org/cloudflare"
+                     alt="Cloudflare"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                <span class="icon-fallback">C</span>
+                <div>
+                    <h3>Cloudflare</h3>
+                    <p>DNS and Network Security</p>
+                </div>
+                <span class="external">↗</span>
+            </a>
+
+        </div>
+
+        <!-- WEB SECURITY -->
+
+        <h3 class="category-title">02. WEB SECURITY TOOLS</h3>
+
+        <div class="tools-grid">
+
+            <a class="tool-card" href="https://www.zaproxy.org/"
+               target="_blank" rel="noopener noreferrer">
+                <img src="https://cdn.simpleicons.org/owasp"
+                     alt="OWASP"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                <span class="icon-fallback">Z</span>
+                <div>
+                    <h3>OWASP ZAP</h3>
+                    <p>Web Security Testing</p>
+                </div>
+                <span class="external">↗</span>
+            </a>
+
+            <a class="tool-card"
+               href="https://portswigger.net/burp/communitydownload"
+               target="_blank" rel="noopener noreferrer">
+                <img src="https://cdn.simpleicons.org/burpsuite"
+                     alt="Burp Suite"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                <span class="icon-fallback">B</span>
+                <div>
+                    <h3>Burp Suite</h3>
+                    <p>Community Web Testing Edition</p>
+                </div>
+                <span class="external">↗</span>
+            </a>
+
+            <a class="tool-card" href="https://observatory.mozilla.org/"
+               target="_blank" rel="noopener noreferrer">
+                <img src="https://cdn.simpleicons.org/mozilla"
+                     alt="Mozilla"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                <span class="icon-fallback">M</span>
+                <div>
+                    <h3>Mozilla Observatory</h3>
+                    <p>Website Security Assessment</p>
+                </div>
+                <span class="external">↗</span>
+            </a>
+
+        </div>
+
+        <!-- PASSWORD SECURITY -->
+
+        <h3 class="category-title">03. PASSWORD SECURITY</h3>
+
+        <div class="tools-grid">
+
+            <a class="tool-card" href="https://keepassxc.org/"
+               target="_blank" rel="noopener noreferrer">
+                <img src="https://cdn.simpleicons.org/keepassxc"
+                     alt="KeePassXC"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                <span class="icon-fallback">K</span>
+                <div>
+                    <h3>KeePassXC</h3>
+                    <p>Offline Password Manager</p>
+                </div>
+                <span class="external">↗</span>
+            </a>
+
+            <a class="tool-card" href="https://bitwarden.com/"
+               target="_blank" rel="noopener noreferrer">
+                <img src="https://cdn.simpleicons.org/bitwarden"
+                     alt="Bitwarden"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                <span class="icon-fallback">B</span>
+                <div>
+                    <h3>Bitwarden</h3>
+                    <p>Password Management</p>
+                </div>
+                <span class="external">↗</span>
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- LEARNING -->
+
+    <section id="learning">
+
+        <h2>/// LEARNING HUB</h2>
+
+        <div class="tool-card">
+            <div class="icon-fallback">O</div>
+            <div>
+                <h3>OWASP Top 10</h3>
+                <p>Learn common web application security risks.</p>
+                <a href="https://owasp.org/www-project-top-ten/"
+                   target="_blank" rel="noopener noreferrer">
+                    Explore Resource ↗
+                </a>
+            </div>
+        </div>
+
+        <div class="tool-card">
+            <div class="icon-fallback">P</div>
+            <div>
+                <h3>PortSwigger Academy</h3>
+                <p>Learn web security through legal practice labs.</p>
+                <a href="https://portswigger.net/web-security"
+                   target="_blank" rel="noopener noreferrer">
+                    Explore Academy ↗
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section id="about">
+        <h2>/// ABOUT</h2>
+        <p>
+            DARKNET is an educational Cybersecurity platform.
+            Learn networking, web security and digital protection.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    DARKNET // LEARN TO PROTECT
+    <p>Educational Purposes Only</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
