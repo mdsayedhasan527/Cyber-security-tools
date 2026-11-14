@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARKNET | CYBER LAB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <div class="logo">DARKNET<span>//</span></div>
+    <nav>
+        <a href="#home">HOME</a>
+        <a href="#tools">TOOLS</a>
+        <a href="#about">ABOUT</a>
+    </nav>
+</header>
+
+<main id="home">
+    <p class="tag">[ CYBER SECURITY LAB ]</p>
+
+    <h1>WELCOME TO<br>
+    <span>DARKNET</span></h1>
+
+    <p class="subtitle">
+        Explore the world of Cybersecurity.
+        Learn. Build. Secure.
+    </p>
+
+    <div class="terminal">
+        <p class="terminal-title">root@darknet:~</p>
+        <p id="typing"></p>
+        <span class="cursor">_</span>
+    </div>
+
+    <section id="tools">
+        <h2>/// SECURITY TOOLS</h2>
+
+        <div class="tool">
+            <h3>01. NETWORKING</h3>
+            <p>Learn networking fundamentals.</p>
+        </div>
+
+        <div class="tool">
+            <h3>02. WEB SECURITY</h3>
+            <p>Learn safe web security testing.</p>
+        </div>
+
+        <div class="tool">
+            <h3>03. PASSWORD SECURITY</h3>
+            <p>Learn password protection.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>/// ABOUT</h2>
+        <p>A learning platform for Cybersecurity enthusiasts.</p>
+    </section>
+</main>
+
+<footer>
+    DARKNET // LEARN TO PROTECT
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
