@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>HEX F@DE | Cybersecurity Tools</title>
+<style>
+:root{--bg:#070707;--panel:#100909;--panel2:#160b0b;--red:#ff3038;--red2:#a3131b;--text:#f2eeee;--muted:#a69b9b;--line:#4c171b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#351014 0,transparent 42%),var(--bg);color:var(--text);font-family:Consolas,Monaco,"Courier New",monospace}
+header{position:sticky;top:0;z-index:5;background:#080808ed;border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+.nav{max-width:1200px;margin:auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{font-size:25px;font-weight:900;letter-spacing:2px;color:var(--red);text-shadow:0 0 15px #ff303855}.logo span{color:#eee}
+.nav small{color:#8e8585;font-size:10px;letter-spacing:2px}
+.hero{max-width:1200px;margin:auto;padding:62px 20px 38px}.tag{color:#ff6268;font-size:11px;letter-spacing:3px}
+h1{font-size:clamp(38px,8vw,76px);line-height:.98;margin:15px 0;color:#fff;letter-spacing:-3px}
+h1 b{color:var(--red);text-shadow:0 0 25px #ff303844}
+.hero p{max-width:650px;color:var(--muted);line-height:1.7}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}.stat{border:1px solid var(--line);background:#100909;padding:12px 16px;border-radius:8px;color:#bbb;font-size:12px}.stat strong{color:var(--red);font-size:18px;margin-right:6px}
+main{max-width:1200px;margin:auto;padding:0 20px 55px}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0 25px}
+input,select{background:#100909;border:1px solid var(--line);color:#eee;border-radius:7px;padding:13px 14px;font:inherit;outline:none}
+input{flex:1;min-width:220px}select{min-width:190px}input:focus,select:focus{border-color:var(--red);box-shadow:0 0 0 2px #ff303822}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:28px 0 15px}.section-title h2{margin:0;color:var(--red);font-size:20px}.section-title span{color:#887d7d;font-size:11px}
+.categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.cat{background:linear-gradient(135deg,#170b0c,#0c0909);border:1px solid var(--line);padding:14px;border-radius:8px;cursor:pointer;text-align:left;color:#eee;transition:.2s;font:inherit}
+.cat:hover,.cat.active{border-color:var(--red);transform:translateY(-2px);box-shadow:0 7px 25px #ff1c2720}.cat strong{display:block;font-size:12px;line-height:1.5}.cat small{display:block;color:#f35a60;margin-top:7px;font-size:10px}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:13px}
+.card{background:linear-gradient(145deg,#160b0c,#0c0909);border:1px solid #40171a;border-radius:9px;padding:16px;min-width:0}
+.card-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.card h3{margin:0;color:#fff;font-size:16px}.pill{font-size:9px;color:#ff7378;border:1px solid #682329;border-radius:20px;padding:5px 7px;white-space:nowrap}
+.card p{color:#a99d9d;font-size:11px;line-height:1.6;min-height:35px}
+.command{background:#050505;border:1px solid #321316;border-radius:6px;padding:10px;color:#ff777c;font-size:11px;line-height:1.5;overflow-wrap:anywhere;min-height:42px}
+.card-actions{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px}
+button{font:inherit;cursor:pointer}.copy{background:#a81720;color:white;border:0;border-radius:5px;padding:8px 11px;font-size:10px}.copy:hover{background:#e12630}
+.official{color:#b9a9a9;text-decoration:none;font-size:10px}.official:hover{color:#ff6268}
+.note{margin:22px 0;background:#120b0b;border-left:3px solid var(--red);padding:13px;color:#aa9e9e;font-size:11px;line-height:1.7}
+footer{text-align:center;border-top:1px solid #301215;padding:25px;color:#766d6d;font-size:10px;letter-spacing:1px}
+.empty{color:#9e9090;padding:25px;text-align:center;border:1px dashed var(--line);border-radius:8px}
+@media(max-width:600px){.hero{padding-top:42px}.nav{padding:12px 15px}.nav small{display:none}.section-title{align-items:start;flex-direction:column}.tools{grid-template-columns:1fr}}
+
+/* HEX F@DE visual upgrade */
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{min-height:100vh;background-image:linear-gradient(rgba(255,48,56,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,48,56,.018) 1px,transparent 1px),radial-gradient(ellipse at 50% -15%,#351014 0,transparent 42%);background-size:34px 34px,34px 34px,auto}
+.nav-links{display:flex;gap:22px;margin-left:auto;margin-right:20px}
+.nav-links a{color:#aaa;text-decoration:none;font-size:11px;letter-spacing:1.5px;transition:.2s}
+.nav-links a:hover{color:var(--red);text-shadow:0 0 12px #ff303866}
+.online{white-space:nowrap}
+.hero{padding-top:76px;padding-bottom:55px;position:relative}
+.hero:after{content:"HEX_F@DE // SECURITY LAB";position:absolute;right:22px;bottom:35px;color:#ff30381c;font-size:clamp(14px,2vw,24px);font-weight:900;letter-spacing:4px;pointer-events:none}
+h1{ text-shadow:0 8px 35px #000 }
+.stat{transition:.2s}.stat:hover{border-color:var(--red);transform:translateY(-3px)}
+.toolbar{position:sticky;top:70px;z-index:4;padding:10px 0;background:#070707eF;backdrop-filter:blur(10px)}
+.categories{margin-bottom:28px}
+.cat{position:relative;overflow:hidden;min-height:74px}
+.cat:after{content:"";position:absolute;inset:auto 0 0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:.2s}
+.cat:hover:after,.cat.active:after{transform:scaleX(1)}
+.tools{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:15px}
+.card{position:relative;overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s}
+.card:before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--red);opacity:.55}
+.card:hover{transform:translateY(-4px);border-color:#a92b32;box-shadow:0 12px 30px #0008,0 0 18px #ff303814}
+.card-top{justify-content:flex-start;align-items:center}
+.tool-identity{display:flex;align-items:center;gap:11px;min-width:0;flex:1}
+.tool-logo{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border:1px solid #612127;border-radius:8px;background:#090606;color:#ff6268;font-weight:900;font-size:15px;overflow:hidden}
+.tool-logo img{width:24px;height:24px;object-fit:contain}
+.card h3{overflow-wrap:anywhere}
+.pill{margin-left:auto}
+.card p{min-height:42px}
+.command{white-space:normal}
+.copy:focus-visible,.cat:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid #ff6268;outline-offset:3px}
+.copy:disabled{opacity:.5;cursor:not-allowed}
+.empty{grid-column:1/-1}
+.note{border-radius:0 8px 8px 0}
+footer{line-height:1.8}
+
+/* CLI Cheatsheet Cards Extension */
+.card.cli-card{grid-column:1/-1;background:linear-gradient(145deg,#190b0d,#0b0808);border-color:#5b1d22}
+.cli-install-wrap{margin-bottom:12px}
+.cli-label{font-size:10px;color:#ff6268;letter-spacing:1.5px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.cli-install-box{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#050505;border:1px solid #3c1519;border-radius:6px;padding:8px 10px}
+.cli-install-box code{color:#ff858a;font-size:11px;overflow-wrap:anywhere}
+.cli-toggle{background:#1b0c0e;color:#ff858a;border:1px solid #5e2026;border-radius:5px;padding:5px 10px;font-size:10px}
+.cli-toggle:hover{border-color:var(--red);color:#fff}
+.cli-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:8px;max-height:360px;overflow-y:auto;padding-right:4px}
+.cli-list.expanded{max-height:none}
+.cli-item{background:#060505;border:1px solid #2e1215;border-radius:6px;padding:9px 10px;display:flex;flex-direction:column;justify-content:space-between;gap:7px}
+.cli-item:hover{border-color:#682329}
+.cli-item-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.cli-num{color:var(--red);font-weight:bold;font-size:10px;flex-shrink:0}
+.cli-desc{color:#b7abab;font-size:10.5px;line-height:1.4;flex:1}
+.cli-cmd-row{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#0c0808;border:1px solid #230e10;border-radius:4px;padding:6px 8px}
+.cli-cmd-row code{color:#ff777c;font-size:11px;line-height:1.45;overflow-wrap:anywhere;word-break:break-word}
+.cli-copy{background:#a81720;color:#fff;border:0;border-radius:4px;padding:5px 8px;font-size:9.5px;white-space:nowrap;flex-shrink:0}
+.cli-copy:hover{background:#e12630}
+
+@media(max-width:700px){.nav{flex-wrap:wrap}.nav-links{order:3;width:100%;justify-content:center;margin:8px 0 0;padding-top:10px;border-top:1px solid #291013}.nav-links a{font-size:10px}.online{font-size:9px}.hero{padding-top:48px}.hero:after{display:none}.toolbar{top:95px}.tools{grid-template-columns:1fr}.cli-list{grid-template-columns:1fr}}
+@media(max-width:390px){.nav small{font-size:8px;letter-spacing:1px}.logo{font-size:21px}.toolbar input{min-width:100%}.toolbar select{width:100%}.tools{grid-template-columns:minmax(0,1fr)}.cli-install-box,.cli-cmd-row{flex-direction:column;align-items:stretch}.cli-copy{text-align:center}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div><div class="logo">HEX <span>F@DE</span></div><small>CYBERSECURITY // ETHICAL LEARNING</small></div><nav class="nav-links"><a href="#home">HOME</a><a href="#directory">TOOLS</a><a href="#about">ABOUT</a></nav><small class="online">● SYSTEM ONLINE</small></div></header>
+<section class="hero" id="home">
+ <div class="tag">[ WELCOME TO THE DIGITAL UNDERGROUND ]</div>
+ <h1>EXPLORE THE<br><b>CYBER WORLD.</b></h1>
+ <p>A dark-themed directory for learning cybersecurity, defensive security, and authorized security auditing. Explore tools, read their purpose, and copy installation &amp; CLI commands where supported.</p>
+ <div class="stats"><div class="stat"><strong id="categoryTotal">16</strong> CATEGORIES</div><div class="stat"><strong id="toolTotal">238</strong> TOOLS</div><div class="stat"><strong>100%</strong> DARK UI</div></div>
+</section>
+<main id="directory">
+ <div class="section-title"><h2>// TOOL DIRECTORY</h2><span>SELECT A CATEGORY OR SEARCH ALL TOOLS &amp; COMMANDS</span></div>
+ <div class="toolbar"><input id="search" type="search" placeholder="⌕ Search tool, category, or CLI command..."><select id="platform"><option value="all">All platforms</option><option value="termux">Termux-friendly commands</option><option value="linux">Linux / Kali commands</option></select></div>
+ <div class="categories" id="categories"></div>
+ <div class="section-title"><h2 id="listTitle">// ALL SECURITY TOOLS</h2><span id="count">238 RESULTS</span></div>
+ <div class="tools" id="tools"></div>
+ <div class="note" id="about"><b>IMPORTANT:</b> Tool support and package names can change. Some desktop tools do not run directly on Android/Termux. Verify each tool's official documentation before installing. Use security tools only on systems you own or have explicit permission to test. This directory does not provide attack instructions.</div>
+</main>
+<footer>HEX F@DE // LEARN • EXPLORE • SECURE<br><br>© 2026 HEX F@DE — CYBERSECURITY TOOLS DIRECTORY</footer>
+<script>
+const raw = [
+["01. Network Scanning Tools",[
+["Nmap","Network discovery and service inventory.","pkg install nmap","https://nmap.org/"],
+["Masscan","High-speed port scanner; use only with written authorization.","apt install masscan","https://github.com/robertdavidgraham/masscan"],
+["Netdiscover","Discover devices on a local network.","apt install netdiscover","https://github.com/netdiscover-scanner/netdiscover"],
+["Angry IP Scanner","Graphical IP range and device scanner.","Desktop installer required","https://angryip.org/"],
+[" arp-scan","Identify devices on your local network.","apt install arp-scan","https://github.com/royhills/arp-scan"],
+["fping","Check reachability of known hosts.","apt install fping","https://fping.org/"],
+["RustScan","Modern port-scanning front end.","Official install guide","https://github.com/RustScan/RustScan"],
+[" naabu","Network port discovery utility.","Official install guide","https://github.com/projectdiscovery/naabu"],
+["unicornscan","Network discovery and information gathering.","apt install unicornscan","https://github.com/foofus/unicornscan"],
+["ZMap","Internet measurement scanner; restricted to authorized research.","apt install zmap","https://zmap.io/"],
+["netcat","Read and write network connections for diagnostics.","pkg install netcat-openbsd","https://nmap.org/ncat/"],
+["fping","Host reachability checker.","apt install fping","https://fping.org/"],
+["iproute2","Inspect local interfaces and routes.","pkg install iproute2","https://www.kernel.org/"],
+["mtr","Network path and latency diagnostics.","pkg install mtr","https://www.bitwizard.nl/mtr/"],
+["arping","Check local network address resolution.","apt install arping","https://github.com/ThomasHabets/arping"]
+]],
+["02. Web Security Tools",[
+["Burp Suite Community","Intercept and inspect your own test web traffic.","Desktop installer required","https://portswigger.net/burp/communitydownload"],
+["OWASP ZAP","Open-source web application security testing.","Official install guide","https://www.zaproxy.org/"],
+["Nikto","Web server configuration and known-issue checks.","apt install nikto","https://github.com/sullo/nikto"],
+["Wapiti","Black-box web application vulnerability scanner.","pip install wapiti3","https://wapiti.sourceforge.io/"],
+["W3af","Web application security assessment framework.","Official install guide","https://github.com/andresriancho/w3af"],
+["WhatWeb","Identify technologies used by a website you own.","apt install whatweb","https://github.com/urbanadventurer/WhatWeb"],
+["HTTPie","Human-friendly HTTP client.","pip install httpie","https://httpie.io/"],
+[" mitmproxy","Inspect traffic in your own development environment.","pip install mitmproxy","https://mitmproxy.org/"],
+[" testssl.sh","Check TLS configuration of authorized domains.","git clone https://github.com/testssl/testssl.sh.git","https://testssl.sh/"],
+["Arachni","Web application security scanner.","Official install guide","https://github.com/Arachni/arachni"],
+[" wpscan","Audit WordPress sites with permission.","gem install wpscan","https://wpscan.com/"],
+["Gau","Collect known URLs for authorized assessment.","go install github.com/lc/gau/v2/cmd/gau@latest","https://github.com/lc/gau"],
+["Dalfox","XSS validation tool for authorized labs.","go install github.com/hahwul/dalfox/v2@latest","https://github.com/hahwul/dalfox"],
+["Nuclei","Template-based checks; use safe templates on owned assets.","go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest","https://github.com/projectdiscovery/nuclei"],
+["SecurityHeaders","Review HTTP security headers.","Browser-based website","https://securityheaders.com/"]
+]],
+["03. Wi-Fi Security Tools",[
+["Aircrack-ng","Wireless network auditing suite; lab use only.","apt install aircrack-ng","https://www.aircrack-ng.org/"],
+["Kismet","Wireless network detector and monitor.","apt install kismet","https://www.kismetwireless.net/"],
+["Wifite","Automated wireless auditing; authorized lab only.","Official install guide","https://github.com/derv82/wifite2"],
+["Wireshark","Analyze packets from your own network.","apt install wireshark","https://www.wireshark.org/"],
+["TShark","Terminal-based packet analysis.","apt install tshark","https://www.wireshark.org/docs/man-pages/tshark.html"],
+["Bettercap","Network visibility and security testing framework.","Official install guide","https://www.bettercap.org/"],
+[" iw","Inspect wireless interfaces and capabilities.","pkg install iw","https://wireless.wiki.kernel.org/"],
+["wavemon","Monitor wireless signal and link quality.","apt install wavemon","https://github.com/uoaerg/wavemon"],
+[" horst","Wireless network monitoring tool.","Official install guide","https://github.com/br101/horst"],
+["LinSSID","Graphical Wi-Fi scanner for Linux.","Official install guide","https://sourceforge.net/projects/linssid/"],
+["nmcli","Manage and inspect NetworkManager connections.","apt install network-manager","https://networkmanager.dev/"],
+["iwctl","Manage local wireless connections with iwd.","apt install iwd","https://iwd.wiki.kernel.org/"],
+["rfkill","View and manage radio device state.","pkg install rfkill","https://man7.org/linux/man-pages/man8/rfkill.8.html"],
+["wavemon","View Wi-Fi signal quality.","apt install wavemon","https://github.com/uoaerg/wavemon"],
+["WiFi Analyzer","Visualize nearby Wi-Fi channels on Android.","Android app","https://play.google.com/store/search?q=wifi%20analyzer&c=apps"]
+]],
+["04. Password Auditing Tools",[
+["John the Ripper","Audit password strength using approved sample hashes.","apt install john","https://www.openwall.com/john/"],
+["Hashcat","Password hash auditing in an authorized lab.","apt install hashcat","https://hashcat.net/hashcat/"],
+["CeWL","Create custom wordlists from permitted website content.","apt install cewl","https://github.com/digininja/CeWL"],
+["KeePassXC","Store passwords securely in an encrypted vault.","apt install keepassxc","https://keepassxc.org/"],
+["KeePassDX","Android password manager.","Android app","https://www.keepassdx.com/"],
+["Bitwarden","Password manager with secure sync options.","Android app / official installer","https://bitwarden.com/"],
+["Have I Been Pwned","Check whether an email appears in known breaches.","Browser-based website","https://haveibeenpwned.com/"],
+["zxcvbn","Estimate password strength in applications.","npm install zxcvbn","https://github.com/dropbox/zxcvbn"],
+["Pwned Passwords","Check passwords against a privacy-preserving corpus.","API / web service","https://haveibeenpwned.com/Passwords"],
+["KeePass","Open-source password manager.","Official installer","https://keepass.info/"],
+["Pass","Standard Unix password manager.","apt install pass","https://www.passwordstore.org/"],
+["Gopass","Open-source password manager for teams and CLI.","Official install guide","https://www.gopass.pw/"],
+["YubiKey Manager","Manage your own security key.","Official installer","https://developers.yubico.com/yubikey-manager/"],
+["2FAS","Open-source two-factor authentication app.","Android app","https://2fas.com/"],
+["Aegis Authenticator","Open-source Android authenticator.","Android app","https://getaegis.app/"]
+]],
+["05. Digital Forensics Tools",[
+["Autopsy","Digital forensics platform for evidence review.","Official installer","https://www.autopsy.com/"],
+["Volatility 3","Memory forensics framework.","pip install volatility3","https://github.com/volatilityfoundation/volatility3"],
+["The Sleuth Kit","Command-line digital forensics tools.","apt install sleuthkit","https://www.sleuthkit.org/"],
+["Foremost","Recover files from disk images.","apt install foremost","https://github.com/korczis/foremost"],
+["PhotoRec","Recover files from storage media.","apt install testdisk","https://www.cgsecurity.org/"],
+["TestDisk","Partition recovery and disk analysis.","apt install testdisk","https://www.cgsecurity.org/"],
+["ExifTool","Read and manage file metadata.","pkg install exiftool","https://exiftool.org/"],
+[" bulk_extractor","Extract features from forensic images.","Official install guide","https://github.com/simsong/bulk_extractor"],
+["Plaso","Build timelines from forensic artifacts.","Official install guide","https://github.com/log2timeline/plaso"],
+["Timesketch","Collaborative forensic timeline analysis.","Official install guide","https://github.com/google/timesketch"],
+["Guymager","Create forensic disk images.","apt install guymager","https://guymager.sourceforge.io/"],
+["DC3DD","Forensic imaging utility.","apt install dc3dd","https://sourceforge.net/projects/dc3dd/"],
+["X-Ways Forensics","Commercial digital forensics suite.","Commercial installer","https://www.x-ways.net/"],
+["Magnet AXIOM","Commercial digital investigation platform.","Commercial installer","https://www.magnetforensics.com/"],
+["ALEAPP","Android Logs Events And Protobuf Parser.","Official install guide","https://github.com/abrignoni/ALEAPP"]
+]],
+["06. Penetration Testing Tools",[
+["Metasploit Framework","Security validation framework for isolated training labs.","Official install guide","https://www.metasploit.com/"],
+["SearchSploit","Search a local Exploit-DB reference database.","apt install exploitdb","https://www.exploit-db.com/searchsploit"],
+["BeEF","Browser security research framework for lab environments.","Official install guide","https://beefproject.com/"],
+["Core Impact","Commercial penetration testing platform.","Commercial installer","https://www.coresecurity.com/"],
+["Faraday","Collaborative vulnerability management for assessments.","Official install guide","https://github.com/infobyte/faraday"],
+["PwnDoc","Manage penetration test reports.","Official install guide","https://github.com/pwndoc/pwndoc"],
+["Dradis","Organize authorized assessment findings.","Official install guide","https://dradis.com/"],
+["ReconFTW","Recon automation; restrict to approved domains.","Official install guide","https://github.com/six2dez/reconftw"],
+["Pentest-Tools","Web-based security testing platform.","Web service","https://pentest-tools.com/"],
+["Pacu","Cloud security assessment framework for owned accounts.","Official install guide","https://github.com/RhinoSecurityLabs/pacu"],
+["ScoutSuite","Multi-cloud security auditing.","pip install scoutsuite","https://github.com/nccgroup/ScoutSuite"],
+["Prowler","Cloud security posture assessment.","pip install prowler","https://prowler.com/"],
+["Checkov","Infrastructure-as-code security scanner.","pip install checkov","https://www.checkov.io/"],
+["Trivy","Scan containers, filesystems and repositories.","Official install guide","https://trivy.dev/"],
+["Lynis","Linux system security auditing.","apt install lynis","https://cisofy.com/lynis/"]
+]],
+["07. Vulnerability Assessment",[
+["Nessus Essentials","Vulnerability assessment for eligible lab assets.","Official installer","https://www.tenable.com/products/nessus"],
+["Greenbone / OpenVAS","Open-source vulnerability management.","Official install guide","https://greenbone.net/"],
+["Nuclei","Template-based security checks on authorized targets.","go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest","https://github.com/projectdiscovery/nuclei"],
+["Qualys","Cloud vulnerability management platform.","Web service","https://www.qualys.com/"],
+["Trivy","Scan containers and dependencies for known issues.","Official install guide","https://trivy.dev/"],
+["Grype","Find vulnerabilities in container images and filesystems.","Official install guide","https://github.com/anchore/grype"],
+["OSV-Scanner","Scan dependencies against the OSV database.","Official install guide","https://github.com/google/osv-scanner"],
+[" osv.dev","Open-source vulnerability database.","Web service","https://osv.dev/"],
+["Retire.js","Find known vulnerable JavaScript libraries.","npm install -g retire","https://retirejs.github.io/retire.js/"],
+["Dependency-Check","Identify known vulnerable dependencies.","Official install guide","https://owasp.org/www-project-dependency-check/"],
+[" osv-scanner","Dependency vulnerability scanner.","Official install guide","https://github.com/google/osv-scanner"],
+["Clair","Container vulnerability analysis.","Official install guide","https://github.com/quay/clair"],
+["Dockle","Container image security linter.","Official install guide","https://github.com/goodwithtech/dockle"],
+[" kube-bench","Check Kubernetes against security benchmarks.","Official install guide","https://github.com/aquasecurity/kube-bench"],
+[" kube-hunter","Kubernetes security assessment for owned clusters.","Official install guide","https://github.com/aquasecurity/kube-hunter"]
+]],
+["08. OSINT & Reconnaissance",[
+["theHarvester","Collect publicly available domain-related information.","Official install guide","https://github.com/laramies/theHarvester"],
+["Maltego","Visual link analysis and OSINT investigations.","Desktop installer","https://www.maltego.com/"],
+["SpiderFoot","Automated OSINT collection for lawful research.","Official install guide","https://github.com/smicallef/spiderfoot"],
+["Recon-ng","Modular reconnaissance framework.","Official install guide","https://github.com/lanmaster53/recon-ng"],
+["Sherlock","Find public usernames across websites; respect privacy.","Official install guide","https://github.com/sherlock-project/sherlock"],
+["Maigret","Public username search tool.","Official install guide","https://github.com/soxoj/maigret"],
+["Amass","Map assets for domains you are authorized to assess.","Official install guide","https://github.com/owasp-amass/amass"],
+["Subfinder","Find publicly listed subdomains of owned domains.","go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest","https://github.com/projectdiscovery/subfinder"],
+[" crt.sh","Search public certificate transparency records.","Browser-based website","https://crt.sh/"],
+["WHOIS","Look up public domain registration information.","pkg install whois","https://www.iana.org/whois"],
+["ExifTool","Inspect metadata in files you are allowed to examine.","pkg install exiftool","https://exiftool.org/"],
+["GHunt","OSINT research tool; use only lawful public data.","Official install guide","https://github.com/mxrch/GHunt"],
+["Photon","Crawl public pages on sites you own or have permission to assess.","Official install guide","https://github.com/s0md3v/Photon"],
+["OSINT Framework","Directory of public OSINT resources.","Browser-based website","https://osintframework.com/"],
+["Google Dorks Guide","Learn search operators for public information responsibly.","Browser-based guide","https://www.google.com/"]
+]],
+["09. Packet Analysis Tools",[
+["Wireshark","Visual packet capture and protocol analysis.","apt install wireshark","https://www.wireshark.org/"],
+["TShark","Command-line packet analyzer.","apt install tshark","https://www.wireshark.org/docs/man-pages/tshark.html"],
+["Tcpdump","Capture and inspect packets on your own network.","pkg install tcpdump","https://www.tcpdump.org/"],
+["Zeek","Network security monitoring and traffic analysis.","Official install guide","https://zeek.org/"],
+["Arkime","Index and search network traffic captures.","Official install guide","https://arkime.com/"],
+["NetworkMiner","Network forensic analysis tool.","Official installer","https://www.netresec.com/"],
+[" termshark","Terminal UI for packet capture analysis.","Official install guide","https://github.com/gcla/termshark"],
+["ngrep","Search network traffic using patterns.","apt install ngrep","https://github.com/jpr5/ngrep"],
+["CapAnalysis","Web-based PCAP analysis.","Official install guide","https://github.com/caesar0301/Network-Analysis"],
+["Brim","Explore network traffic and security logs.","Official installer","https://www.brimdata.io/"],
+["Suricata","Network threat detection and monitoring.","apt install suricata","https://suricata.io/"],
+["Snort","Network intrusion detection and prevention.","apt install snort","https://www.snort.org/"],
+["tcpreplay","Replay packet captures in an isolated lab.","apt install tcpreplay","https://tcpreplay.appneta.com/"],
+["capinfos","Display metadata about capture files.","apt install wireshark-common","https://www.wireshark.org/"],
+["editcap","Read, write and edit capture files.","apt install wireshark-common","https://www.wireshark.org/"]
+]],
+["10. DNS & Domain Tools",[
+["dig","Query DNS records.","pkg install dnsutils","https://www.isc.org/bind/"],
+["Whois","Query domain registration records.","pkg install whois","https://www.iana.org/whois"],
+["DNSenum","DNS information gathering for authorized domains.","apt install dnsenum","https://github.com/fwaeytens/dnsenum"],
+["Fierce","DNS reconnaissance for permitted domains.","Official install guide","https://github.com/mschwager/fierce"],
+["DNSRecon","DNS enumeration and audit utility.","Official install guide","https://github.com/darkoperator/dnsrecon"],
+["dnsx","DNS toolkit for validating known domains.","go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest","https://github.com/projectdiscovery/dnsx"],
+["Amass","Map an organization's approved external assets.","Official install guide","https://github.com/owasp-amass/amass"],
+["Subfinder","Discover publicly indexed subdomains.","go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest","https://github.com/projectdiscovery/subfinder"],
+["dnsmap","DNS mapping utility for lab use.","apt install dnsmap","https://github.com/makefu/dnsmap"],
+["dnswalk","Check DNS zone information and consistency.","apt install dnswalk","https://github.com/davebarr/dnswalk"],
+["kdig","DNS lookup utility from Knot DNS.","apt install knot-dnsutils","https://www.knot-dns.cz/"],
+["host","Simple DNS lookup utility.","pkg install dnsutils","https://manpages.debian.org/host"],
+["nslookup","Query DNS servers.","pkg install dnsutils","https://www.ibm.com/docs/"],
+["delv","DNSSEC validation lookup tool.","apt install bind9-dnsutils","https://www.isc.org/bind/"],
+["DNSViz","Visualize and troubleshoot DNSSEC deployments.","Browser-based website","https://dnsviz.net/"]
+]],
+["11. Malware Analysis Tools",[
+["Ghidra","Reverse engineering framework for defensive analysis.","Official installer","https://ghidra-sre.org/"],
+["YARA","Identify and classify files using rules.","apt install yara","https://virustotal.github.io/yara/"],
+["REMnux","Linux toolkit for malware analysis in an isolated lab.","Official install guide","https://remnux.org/"],
+["Cuckoo Sandbox","Automated malware analysis sandbox; isolated lab only.","Official install guide","https://cuckoosandbox.org/"],
+[" capa","Identify capabilities in executable files.","Official install guide","https://github.com/mandiant/capa"],
+["FLOSS","Extract obfuscated strings from binaries.","Official install guide","https://github.com/mandiant/flare-floss"],
+["Detect It Easy","Identify file types and packers.","Official installer","https://github.com/horsicq/Detect-It-Easy"],
+["PE-bear","Inspect Windows PE files.","Official installer","https://github.com/hasherezade/pe-bear"],
+["DIE","Executable file identification.","Official installer","https://github.com/horsicq/Detect-It-Easy"],
+["ClamAV","Open-source malware detection.","pkg install clamav","https://www.clamav.net/"],
+["LIEF","Parse and modify executable formats for research.","pip install lief","https://lief.re/"],
+["Binwalk","Analyze firmware images.","apt install binwalk","https://github.com/ReFirmLabs/binwalk"],
+["Radare2","Reverse engineering framework.","pkg install radare2","https://rada.re/"],
+["Cutter","GUI for reverse engineering with Rizin.","Official installer","https://cutter.re/"],
+["PEStudio","Inspect Windows executable files.","Official installer","https://www.winitor.com/"]
+]],
+["12. Android Security Tools",[
+["MobSF","Mobile application security testing framework.","Official install guide","https://mobsf.github.io/docs/"],
+["JADX","Decompile Android DEX to Java source for review.","Official installer","https://github.com/skylot/jadx"],
+["Apktool","Decode Android APK resources for inspection.","Official install guide","https://apktool.org/"],
+["Frida","Dynamic instrumentation toolkit for your own apps.","Official install guide","https://frida.re/"],
+["Objection","Runtime mobile exploration for authorized testing.","pip install objection","https://github.com/sensepost/objection"],
+["ADB","Android Debug Bridge for your own device.","pkg install android-tools","https://developer.android.com/tools/adb"],
+["Apk Analyzer","Inspect APK contents and size.","Android Studio","https://developer.android.com/studio"],
+["QARK","Android app security review tool.","Official install guide","https://github.com/linkedin/qark"],
+["Androguard","Python tool for Android app analysis.","pip install androguard","https://androguard.readthedocs.io/"],
+["APKiD","Identify compiler and packer information in APKs.","Official install guide","https://github.com/rednaga/APKiD"],
+["Bytecode Viewer","View and inspect Java/Android bytecode.","Official installer","https://github.com/Konloch/bytecode-viewer"],
+["Inspeckage","Android app inspection framework; legacy project.","Project archive / docs","https://github.com/ac-pm/Inspeckage"],
+["MVT","Mobile Verification Toolkit for device backup analysis.","pip install mvt","https://docs.mvt.re/"],
+["Quark-Engine","Android malware scoring framework.","pip install quark-engine","https://github.com/quark-engine/quark-engine"],
+["Android Studio","Official Android development and analysis environment.","Official installer","https://developer.android.com/studio"]
+]],
+["13. Cryptography Tools",[
+["OpenSSL","TLS, certificate and cryptographic utilities.","pkg install openssl","https://www.openssl.org/"],
+["GnuPG","Encrypt, sign and verify files and messages.","pkg install gnupg","https://gnupg.org/"],
+["CyberChef","Web-based data transformation and encoding toolkit.","Browser-based app","https://gchq.github.io/CyberChef/"],
+["Hash-Identifier","Identify likely hash formats for learning.","Official install guide","https://github.com/blackploit/hash-identifier"],
+[" age","Simple modern file encryption tool.","Official install guide","https://github.com/FiloSottile/age"],
+[" minisign","Sign and verify files.","Official install guide","https://jedisct1.github.io/minisign/"],
+[" signify","Create and verify digital signatures.","apt install signify-openbsd","https://man.openbsd.org/signify"],
+["OpenSSH","Secure remote administration.","pkg install openssh","https://www.openssh.com/"],
+["step-ca","Private certificate authority for development environments.","Official install guide","https://smallstep.com/docs/step-ca/"],
+["mkcert","Create locally trusted development certificates.","Official install guide","https://github.com/FiloSottile/mkcert"],
+["Hashdeep","Compute and audit file hashes.","apt install hashdeep","https://github.com/jessek/hashdeep"],
+["sha256sum","Verify file integrity using SHA-256.","Coreutils / preinstalled","https://www.gnu.org/software/coreutils/"],
+["GPG Suite","Manage keys and encrypted files on macOS.","Official installer","https://gpgtools.org/"],
+["KeePassXC","Encrypted password and key storage.","apt install keepassxc","https://keepassxc.org/"],
+["Cryptomator","Encrypt cloud-stored files.","Official installer","https://cryptomator.org/"]
+]],
+["14. Linux & Termux Tools",[
+["Netcat","Network troubleshooting utility.","pkg install netcat-openbsd","https://nmap.org/ncat/"],
+["cURL","Transfer data and test web endpoints.","pkg install curl","https://curl.se/"],
+["Wget","Download files from trusted sources.","pkg install wget","https://www.gnu.org/software/wget/"],
+["Git","Version control for source code.","pkg install git","https://git-scm.com/"],
+["Python","Programming and automation language.","pkg install python","https://www.python.org/"],
+["OpenSSH","Secure shell client and server tools.","pkg install openssh","https://www.openssh.com/"],
+["Termux API","Access supported Android functions from Termux.","pkg install termux-api","https://wiki.termux.com/wiki/Termux:API"],
+["jq","Parse and format JSON data.","pkg install jq","https://jqlang.github.io/jq/"],
+["htop","Interactive process viewer.","pkg install htop","https://htop.dev/"],
+["vim","Terminal text editor.","pkg install vim","https://www.vim.org/"],
+["nano","Simple terminal text editor.","pkg install nano","https://www.nano-editor.org/"],
+["tmux","Terminal multiplexer.","pkg install tmux","https://github.com/tmux/tmux"],
+["proot-distro","Run supported Linux distributions inside Termux.","pkg install proot-distro","https://github.com/termux/proot-distro"],
+["rclone","Manage files across cloud storage providers.","pkg install rclone","https://rclone.org/"],
+["rsync","Synchronize files and directories.","pkg install rsync","https://rsync.samba.org/"]
+]],
+["15. Firewall & Security Monitoring",[
+["Suricata","Network threat detection and monitoring.","apt install suricata","https://suricata.io/"],
+["Snort","Network intrusion detection system.","apt install snort","https://www.snort.org/"],
+["Wazuh","Open-source security monitoring and SIEM.","Official install guide","https://wazuh.com/"],
+["Fail2ban","Reduce repeated unauthorized login attempts.","apt install fail2ban","https://www.fail2ban.org/"],
+["UFW","Simple Linux firewall management.","apt install ufw","https://launchpad.net/ufw"],
+["nftables","Linux packet filtering framework.","apt install nftables","https://netfilter.org/projects/nftables/"],
+["iptables","Linux firewall administration utility.","apt install iptables","https://www.netfilter.org/"],
+["CrowdSec","Collaborative security engine and threat detection.","Official install guide","https://www.crowdsec.net/"],
+["OSSEC","Host-based intrusion detection system.","Official install guide","https://www.ossec.net/"],
+["AIDE","File and directory integrity monitoring.","apt install aide","https://aide.github.io/"],
+["auditd","Linux audit framework.","apt install auditd","https://github.com/linux-audit/audit-userspace"],
+["Lynis","Linux security auditing.","apt install lynis","https://cisofy.com/lynis/"],
+["Prometheus","Metrics monitoring and alerting toolkit.","Official install guide","https://prometheus.io/"],
+["Grafana","Security and infrastructure dashboards.","Official install guide","https://grafana.com/"],
+["Netdata","Real-time system and service monitoring.","Official install guide","https://www.netdata.cloud/"]
+]]
+];
+
+const cliCheatsheets = [
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "01 / 13 • NETWORK",
+    name: "NMAP",
+    subtitle: "ADVANCED NETWORK ENUMERATION",
+    desc: "Advanced network enumeration, port scanning, OS fingerprinting, and NSE script auditing.",
+    installCmd: "apt install nmap",
+    url: "https://nmap.org/",
+    commands: [
+      { num: "01", cmd: "sudo nmap -sS -p- -T4 --open 10.10.10.10", desc: "Full TCP port sweep" },
+      { num: "02", cmd: "nmap -sV --version-all -p 21,22,80,443 10.10.10.10", desc: "Deep service version detection" },
+      { num: "03", cmd: "sudo nmap -sU --top-ports 100 -sV --open 10.10.10.10", desc: "Common UDP service profiling" },
+      { num: "04", cmd: "sudo nmap -O --osscan-guess -p 22,80,443 10.10.10.10", desc: "Operating system fingerprint analysis" },
+      { num: "05", cmd: "nmap -Pn -p 80,443,8080 --script http-title,http-headers 10.10.10.10", desc: "HTTP title header inspection" },
+      { num: "06", cmd: "nmap -sV -p 443 --script ssl-cert,ssl-enum-ciphers 10.10.10.10", desc: "TLS certificate cipher audit" },
+      { num: "07", cmd: "nmap -sV -p 22 --script ssh-hostkey,ssh2-enum-algos 10.10.10.10", desc: "SSH keys algorithms enumeration" },
+      { num: "08", cmd: "nmap -sV -p 53 --script dns-recursion,dns-nsid 10.10.10.10", desc: "DNS service configuration checks" },
+      { num: "09", cmd: "nmap -sV -p 445 --script smb-protocols,smb2-security-mode 10.10.10.10", desc: "SMB protocol security checks" },
+      { num: "10", cmd: "nmap -sV -p 3389 --script rdp-ntlm-info,rdp-enum-encryption 10.10.10.10", desc: "RDP encryption capability assessment" },
+      { num: "11", cmd: "nmap -sn -PS22,80,443 -PA3389 -PE 10.10.10.0/24", desc: "Combined host discovery probes" },
+      { num: "12", cmd: "nmap -sT --top-ports 1000 --open --reason 10.10.10.0/24", desc: "TCP discovery response reasons" },
+      { num: "13", cmd: "nmap -sV --script banner -p 21,22,25,110 10.10.10.10", desc: "Application banner identification checks" },
+      { num: "14", cmd: "nmap -sV -p 80,443 --script http-methods,http-security-headers 10.10.10.10", desc: "HTTP security header checks" },
+      { num: "15", cmd: "nmap -iL targets.txt -sV --open -oX services.xml", desc: "Structured multi-target service inventory" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "02 / 13 • PORT DISCOVERY",
+    name: "MASSCAN",
+    subtitle: "HIGH-SPEED PORT DISCOVERY",
+    desc: "Asynchronous high-speed TCP/UDP port discovery, banner grabbing, and distributed network scanning.",
+    installCmd: "apt install masscan",
+    url: "https://github.com/robertdavidgraham/masscan",
+    commands: [
+      { num: "01", cmd: "sudo masscan 10.10.10.0/24 -p1-65535 --rate 800", desc: "Full-range internal port discovery" },
+      { num: "02", cmd: "sudo masscan 10.10.10.0/24 -p80,443,8080 --banners --rate 300", desc: "HTTP service banner capture" },
+      { num: "03", cmd: "sudo masscan 10.10.10.0/24 -pU:53,U:123,U:161 --rate 200", desc: "Selected UDP service discovery" },
+      { num: "04", cmd: "sudo masscan 10.10.10.0/24 -p22,3389,445 --rate 250 -oJ admin.json", desc: "Remote administration exposure report" },
+      { num: "05", cmd: "sudo masscan 10.10.10.0/24 -p1-1024 --rate 500 -oX lowports.xml", desc: "Well-known port inventory export" },
+      { num: "06", cmd: "sudo masscan 10.10.10.0/24 -p443 --rate 100 --wait 5", desc: "TLS endpoint response collection" },
+      { num: "07", cmd: "sudo masscan -iL targets.txt -p80,443 --rate 150 -oL web.lst", desc: "File-driven web port discovery" },
+      { num: "08", cmd: "sudo masscan 10.10.10.0/24 -p1-4096 --excludefile excluded.txt --rate 200", desc: "Scope-aware exclusion controlled scanning" },
+      { num: "09", cmd: "sudo masscan 10.10.10.0/24 -p22,80 --ping --rate 100", desc: "Combined ICMP TCP discovery" },
+      { num: "10", cmd: "sudo masscan 10.10.10.0/24 -p21,22,25 --banners --rate 100", desc: "Remote service fingerprint collection" },
+      { num: "11", cmd: "sudo masscan 10.10.10.0/24 -p80,443 -oB snapshot.scan --rate 200", desc: "Compact binary results capture" },
+      { num: "12", cmd: "masscan --readscan snapshot.scan -oJ converted.json", desc: "Binary results JSON conversion" },
+      { num: "13", cmd: "sudo masscan 10.10.10.0/24 -p1-1024 --resume-index 0 --resume-count 5000 --rate 200", desc: "Segmented bounded scan execution" },
+      { num: "14", cmd: "sudo masscan 10.10.10.0/24 -p80,443 --shard 1/2 --rate 150", desc: "Distributed scan partition execution" },
+      { num: "15", cmd: "sudo masscan 10.10.10.0/24 -p443 --rate 10 --offline --packet-trace", desc: "Offline packet generation inspection" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "03 / 13 • RAPID PORTS",
+    name: "RUSTSCAN",
+    subtitle: "RAPID PORT WORKFLOWS",
+    desc: "Fast port scanner written in Rust that automatically pipes discovered open ports into Nmap.",
+    installCmd: "cargo install rustscan",
+    url: "https://github.com/RustScan/RustScan",
+    commands: [
+      { num: "01", cmd: "rustscan -a 10.10.10.10 -b 300 -t 1500 -- -sV", desc: "Fast ports service enrichment" },
+      { num: "02", cmd: "rustscan -a 10.10.10.10 -r 1-1024 -b 200 -- -sC", desc: "Common ports scripted checks" },
+      { num: "03", cmd: "rustscan -a 10.10.10.10 -p 80,443,8080 -- -sV", desc: "Web port service profiling" },
+      { num: "04", cmd: "rustscan -a 10.10.10.10 -b 100 -t 2500 -- -O", desc: "Conservative operating system fingerprinting" },
+      { num: "05", cmd: "rustscan -a 10.10.10.0/24 -b 50 -t 2000 -- -sV", desc: "Subnet service inventory workflow" },
+      { num: "06", cmd: "rustscan -a 10.10.10.10 --scan-order random -b 150 -- -sV", desc: "Randomized port ordering analysis" },
+      { num: "07", cmd: "rustscan -a 10.10.10.10 -g -b 100 > openports.txt", desc: "Machine readable port export" },
+      { num: "08", cmd: "rustscan -a 10.10.10.10 -u 4096 -b 1000 -- -sV", desc: "Elevated descriptor batch scanning" },
+      { num: "09", cmd: "rustscan -a 10.10.10.10 -r 8000-9000 -t 3000 -- -sV", desc: "Alternate web port identification" },
+      { num: "10", cmd: "rustscan -a 10.10.10.10 -p 22,2222 -- -sV --script ssh2-enum-algos", desc: "SSH algorithm assessment pipeline" },
+      { num: "11", cmd: "rustscan -a 10.10.10.10 -p 445 -- -sV --script smb-protocols", desc: "SMB dialect validation workflow" },
+      { num: "12", cmd: "rustscan -a 10.10.10.10 -p 443,8443 -- -sV --script ssl-cert", desc: "Certificate discovery across ports" },
+      { num: "13", cmd: "rustscan -a 10.10.10.10 -p 3389 -- -sV --script rdp-enum-encryption", desc: "RDP encryption mode inspection" },
+      { num: "14", cmd: "rustscan -a 10.10.10.10 -b 25 -t 5000 -- -sV", desc: "Low impact service assessment" },
+      { num: "15", cmd: "rustscan -a 10.10.10.10 -n -b 200 -- -sV -oN audit.txt", desc: "Config independent service inventory" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "04 / 13 • PORT RECON",
+    name: "NAABU",
+    subtitle: "TARGETED PORT RECON",
+    desc: "Fast, reliable port scanner from ProjectDiscovery with SYN/CONNECT scanning, CDN exclusion, and Nmap handoff.",
+    installCmd: "go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest",
+    url: "https://github.com/projectdiscovery/naabu",
+    commands: [
+      { num: "01", cmd: "naabu -host 10.10.10.10 -p 1-65535 -rate 200 -silent", desc: "Full TCP exposure inventory" },
+      { num: "02", cmd: "naabu -l hosts.txt -top-ports 1000 -rate 150 -o ports.txt", desc: "Prioritized common port discovery" },
+      { num: "03", cmd: "naabu -host 10.10.10.10 -p 22,80,443,445 -s s -rate 100", desc: "Selected SYN port enumeration" },
+      { num: "04", cmd: "naabu -host example.com -scan-all-ips -p 80,443 -silent", desc: "Multihomed domain port mapping" },
+      { num: "05", cmd: "naabu -l hosts.txt -exclude-ports 25,110 -top-ports 1000", desc: "Excluded service port inventory" },
+      { num: "06", cmd: "naabu -host 10.10.10.10 -sV -p 21,22,80 -silent", desc: "Direct service version discovery" },
+      { num: "07", cmd: "naabu -host 10.10.10.10 -sD -sV -p 22,443 -rate 60", desc: "Integrated service fingerprint probing" },
+      { num: "08", cmd: "naabu -host example.com -passive -silent", desc: "Passive internet port intelligence" },
+      { num: "09", cmd: "naabu -host 10.10.10.0/24 -sn -pe -rate 100", desc: "ICMP subnet host discovery" },
+      { num: "10", cmd: "naabu -host 10.10.10.0/24 -sn -arp -rate 100", desc: "ARP subnet host discovery" },
+      { num: "11", cmd: "naabu -host 10.10.10.10 -wn -ps 80,443 -p 1-1024", desc: "SYN verified host scanning" },
+      { num: "12", cmd: "naabu -l hosts.txt -p 80,443 -j -o ports.jsonl", desc: "Structured web port export" },
+      { num: "13", cmd: "naabu -host 10.10.10.10 -p 1-4096 -verify -rate 100", desc: "Validated TCP exposure results" },
+      { num: "14", cmd: "naabu -host 10.10.10.10 -p 22,443 -nmap-cli 'nmap -sV'", desc: "Automated Nmap enrichment handoff" },
+      { num: "15", cmd: "naabu -l hosts.txt -top-ports 1000 -exclude-cdn -silent", desc: "CDN-aware port inventory scoping" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "05 / 13 • NETWORK SURVEYS",
+    name: "ZMAP",
+    subtitle: "LARGE NETWORK SURVEYS",
+    desc: "Fast single-packet network scanner designed for large-scale internet and subnet research surveys.",
+    installCmd: "apt install zmap",
+    url: "https://zmap.io/",
+    commands: [
+      { num: "01", cmd: "sudo zmap -p 80 -r 100 10.10.10.0/24 -o http.csv", desc: "Bounded HTTP host survey" },
+      { num: "02", cmd: "sudo zmap -p 22,80,443 -r 150 10.10.10.0/24 -o ports.csv", desc: "Multiservice TCP exposure survey" },
+      { num: "03", cmd: "sudo zmap -M icmp_echoscan -r 100 10.10.10.0/24 -o alive.csv", desc: "Rapid ICMP reachability inventory" },
+      { num: "04", cmd: "sudo zmap -p 443 -w scopes.txt -r 100 -o tls.csv", desc: "Explicitly allowlisted TLS scanning" },
+      { num: "05", cmd: "sudo zmap -p 445 10.10.10.0/24 -b excluded.txt -r 50", desc: "Blocklisted SMB exposure mapping" },
+      { num: "06", cmd: "sudo zmap -p 80 -n 100 -r 50 10.10.10.0/24", desc: "Capped target sample survey" },
+      { num: "07", cmd: "sudo zmap -p 443 -N 20 -r 50 10.10.10.0/24", desc: "Result limited TLS discovery" },
+      { num: "08", cmd: "sudo zmap -p 22 -t 30 -r 40 10.10.10.0/24", desc: "Time bounded SSH survey" },
+      { num: "09", cmd: "sudo zmap -p 3389 -P 2 -r 50 10.10.10.0/24", desc: "Repeated RDP response probes" },
+      { num: "10", cmd: "sudo zmap -p 80 -e 2026 -r 50 10.10.10.0/24", desc: "Reproducible target sampling order" },
+      { num: "11", cmd: "sudo zmap -p 443 -f saddr,sport -r 100 10.10.10.0/24", desc: "Selected response field extraction" },
+      { num: "12", cmd: "sudo zmap -p 8080 -O json -r 50 10.10.10.0/24 -o http.json", desc: "JSON web survey results" },
+      { num: "13", cmd: "sudo zmap -p 22 -i eth0 -r 50 10.10.10.0/24", desc: "Bound interface scan execution" },
+      { num: "14", cmd: "sudo zmap -p 443 -r 50 --shards=2 --shard=0 --seed=42 10.10.10.0/24", desc: "Reproducible distributed survey partition" },
+      { num: "15", cmd: "sudo zmap -M icmp_echoscan -P 3 -r 50 10.10.10.0/24", desc: "Resilient repeated ICMP discovery" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "06 / 13 • LOCAL MAPPING",
+    name: "ARP-SCAN",
+    subtitle: "LOCAL NETWORK MAPPING",
+    desc: "Layer-2 ARP host discovery tool for mapping local LAN devices, MAC addresses, vendors, and VLANs.",
+    installCmd: "apt install arp-scan",
+    url: "https://github.com/royhills/arp-scan",
+    commands: [
+      { num: "01", cmd: "sudo arp-scan -I eth0 -l --rtt", desc: "Local devices latency mapping" },
+      { num: "02", cmd: "sudo arp-scan -I eth0 10.10.10.0/24 --retry=3", desc: "Reliable subnet device discovery" },
+      { num: "03", cmd: "sudo arp-scan -I eth0 -f hosts.txt --plain", desc: "File-based local host inventory" },
+      { num: "04", cmd: "sudo arp-scan -I eth0 10.10.10.1-10.10.10.50 --plain", desc: "Focused LAN device enumeration" },
+      { num: "05", cmd: "sudo arp-scan -I eth0 -l --plain --format='${ip},${mac},${vendor}'", desc: "Structured vendor inventory export" },
+      { num: "06", cmd: "sudo arp-scan -I eth0 -l --numeric --quiet", desc: "Minimal IP MAC mapping" },
+      { num: "07", cmd: "sudo arp-scan -I eth0 -l --ignoredups --rtt", desc: "Deduplicated device latency inventory" },
+      { num: "08", cmd: "sudo arp-scan -I eth0 -l --bandwidth=64K --retry=3", desc: "Bandwidth controlled ARP discovery" },
+      { num: "09", cmd: "sudo arp-scan -I eth0 -l --interval=20 --timeout=800", desc: "Tuned ARP retry timing" },
+      { num: "10", cmd: "sudo arp-scan -I eth0 -l --random --randomseed=2026", desc: "Reproducible randomized target ordering" },
+      { num: "11", cmd: "sudo arp-scan -I eth0 -l --resolve --plain", desc: "Reverse resolved device inventory" },
+      { num: "12", cmd: "sudo arp-scan -I eth0 -l --pcapsavefile=arp.pcap", desc: "Raw ARP evidence capture" },
+      { num: "13", cmd: "sudo arp-scan -I eth0 -l --limit=20", desc: "Minimum responder count validation" },
+      { num: "14", cmd: "sudo arp-scan -I eth0 --vlan=20 10.10.20.0/24", desc: "Tagged VLAN host discovery" },
+      { num: "15", cmd: "sudo arp-scan -I eth0 -l --ouifile=oui.txt --macfile=vendors.txt", desc: "Custom MAC vendor identification" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "07 / 13 • HOST AVAILABILITY",
+    name: "FPING",
+    subtitle: "HOST AVAILABILITY INTELLIGENCE",
+    desc: "High-performance parallel ICMP ping sweep utility for host availability, latency, and packet loss diagnostics.",
+    installCmd: "apt install fping",
+    url: "https://fping.org/",
+    commands: [
+      { num: "01", cmd: "fping -a -g 10.10.10.0/24 -r 1", desc: "Active subnet host listing" },
+      { num: "02", cmd: "fping -u -g 10.10.10.0/24 -r 2", desc: "Unreachable subnet host listing" },
+      { num: "03", cmd: "fping -c 5 -q -g 10.10.10.0/24", desc: "Subnet packet loss statistics" },
+      { num: "04", cmd: "fping -C 5 -q < hosts.txt", desc: "Per-host latency sample series" },
+      { num: "05", cmd: "fping -a -i 20 -t 500 -g 10.10.10.0/24", desc: "Rate tuned availability sweeping" },
+      { num: "06", cmd: "fping -a -g 10.10.10.10 10.10.10.100", desc: "Bounded address range discovery" },
+      { num: "07", cmd: "fping -c 10 -p 200 -q 10.10.10.10", desc: "Short interval latency sampling" },
+      { num: "08", cmd: "fping -c 10 -p 500 -D 10.10.10.10", desc: "Timestamped host latency measurements" },
+      { num: "09", cmd: "fping -l -Q 10 10.10.10.10", desc: "Continuous interval health monitoring" },
+      { num: "10", cmd: "fping -c 20 -o -q 10.10.10.10", desc: "Host outage duration estimation" },
+      { num: "11", cmd: "fping -a -n -g 10.10.10.0/24", desc: "Reachable reverse DNS enrichment" },
+      { num: "12", cmd: "fping -c 5 -e 10.10.10.10", desc: "Packet roundtrip time reporting" },
+      { num: "13", cmd: "fping -c 5 -M -b 1400 10.10.10.10", desc: "Fragmentation constrained MTU probing" },
+      { num: "14", cmd: "fping -a -I eth0 -g 10.10.10.0/24", desc: "Interface scoped reachability sweep" },
+      { num: "15", cmd: "fping -c 5 -q -t 800 -r 1 < hosts.txt", desc: "Reliable batch availability sampling" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "08 / 13 • DNS INTELLIGENCE",
+    name: "DNSX",
+    subtitle: "DNS RECORD INTELLIGENCE",
+    desc: "Fast and multi-purpose DNS toolkit for bulk record resolution, wildcard filtering, CDN attribution, and bruteforcing.",
+    installCmd: "go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest",
+    url: "https://github.com/projectdiscovery/dnsx",
+    commands: [
+      { num: "01", cmd: "dnsx -l subs.txt -a -resp -silent", desc: "IPv4 hostname resolution inventory" },
+      { num: "02", cmd: "dnsx -l subs.txt -aaaa -resp -silent", desc: "IPv6 hostname resolution inventory" },
+      { num: "03", cmd: "dnsx -l subs.txt -cname -resp -silent", desc: "CNAME alias relationship mapping" },
+      { num: "04", cmd: "dnsx -l domains.txt -mx -resp -silent", desc: "Mail exchanger infrastructure discovery" },
+      { num: "05", cmd: "dnsx -l domains.txt -ns -resp -silent", desc: "Authoritative nameserver footprint analysis" },
+      { num: "06", cmd: "dnsx -l domains.txt -txt -resp -silent", desc: "DNS TXT record inspection" },
+      { num: "07", cmd: "dnsx -l domains.txt -soa -resp -silent", desc: "Zone authority metadata lookup" },
+      { num: "08", cmd: "dnsx -l domains.txt -caa -resp -silent", desc: "Certificate authority policy discovery" },
+      { num: "09", cmd: "dnsx -d example.com -w dns-words.txt -rl 50 -silent", desc: "Wordlist based subdomain resolution" },
+      { num: "10", cmd: "dnsx -l subs.txt -a -rcode noerror -resp", desc: "Successful DNS response filtering" },
+      { num: "11", cmd: "dnsx -l subs.txt -a -r resolvers.txt -retry 3", desc: "Custom resolver reliability testing" },
+      { num: "12", cmd: "dnsx -l subs.txt -a -cdn -asn -silent", desc: "CDN ASN infrastructure attribution" },
+      { num: "13", cmd: "dnsx -l ips.txt -ptr -resp -silent", desc: "Reverse address record enumeration" },
+      { num: "14", cmd: "dnsx -wd example.com -wt 8 -silent", desc: "Wildcard DNS response assessment" },
+      { num: "15", cmd: "dnsx -l subs.txt -a -json -o dns.jsonl", desc: "Machine readable DNS exports" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "09 / 13 • SUBDOMAIN RECON",
+    name: "SUBFINDER",
+    subtitle: "PASSIVE SUBDOMAIN DISCOVERY",
+    desc: "Fast passive subdomain enumeration tool leveraging public intelligence sources, filters, and DNS pipelines.",
+    installCmd: "go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest",
+    url: "https://github.com/projectdiscovery/subfinder",
+    commands: [
+      { num: "01", cmd: "subfinder -d example.com -all -silent", desc: "Extended passive source enumeration" },
+      { num: "02", cmd: "subfinder -dL domains.txt -all -oD results", desc: "Multi-domain organized discovery results" },
+      { num: "03", cmd: "subfinder -d example.com -recursive -silent", desc: "Recursive capable provider enumeration" },
+      { num: "04", cmd: "subfinder -d example.com -s crtsh,github -silent", desc: "Selected intelligence provider queries" },
+      { num: "05", cmd: "subfinder -d example.com -es hackertarget -all -silent", desc: "Excluded source discovery workflow" },
+      { num: "06", cmd: "subfinder -d example.com -active -oI -silent", desc: "Validated subdomains with addresses" },
+      { num: "07", cmd: "subfinder -d example.com -active -rL resolvers.txt -silent", desc: "Resolver controlled active verification" },
+      { num: "08", cmd: "subfinder -d example.com -oJ -cs -o subs.jsonl", desc: "Attribution rich JSON exports" },
+      { num: "09", cmd: "subfinder -d example.com -m api,dev -silent", desc: "Matched development asset discovery" },
+      { num: "10", cmd: "subfinder -d example.com -f test,staging -silent", desc: "Filtered environment name exclusions" },
+      { num: "11", cmd: "subfinder -d example.com -rl 20 -all -silent", desc: "Throttled multi-provider reconnaissance workflow" },
+      { num: "12", cmd: "subfinder -dL domains.txt -max-time 15 -silent", desc: "Bounded batch reconnaissance duration" },
+      { num: "13", cmd: "subfinder -d example.com -timeout 20 -all -silent", desc: "Tuned source response deadlines" },
+      { num: "14", cmd: "subfinder -d example.com -silent | sort -u > subs.txt", desc: "Unique subdomain inventory export" },
+      { num: "15", cmd: "subfinder -d example.com -silent | dnsx -a -silent", desc: "Passive discovery resolution pipeline" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "10 / 13 • ACTIVE DNS",
+    name: "DNSRECON",
+    subtitle: "ACTIVE DNS ENUMERATION",
+    desc: "Active DNS enumeration script for zone transfers (AXFR), SRV records, DNSSEC zone walking, and brute-forcing.",
+    installCmd: "apt install dnsrecon",
+    url: "https://github.com/darkoperator/dnsrecon",
+    commands: [
+      { num: "01", cmd: "dnsrecon -d example.com -t std -a -j standard.json", desc: "Standard records transfer assessment" },
+      { num: "02", cmd: "dnsrecon -d example.com -t brt -D words.txt --threads 10", desc: "Concurrent wordlist hostname discovery" },
+      { num: "03", cmd: "dnsrecon -d example.com -t brt -D words.txt -f", desc: "Wildcard filtered subdomain discovery" },
+      { num: "04", cmd: "dnsrecon -d example.com -t axfr -n ns1.example.com", desc: "Targeted authoritative transfer testing" },
+      { num: "05", cmd: "dnsrecon -d example.com -t srv --threads 10", desc: "Service discovery record enumeration" },
+      { num: "06", cmd: "dnsrecon -r 10.10.10.0/24 -t rvl --threads 10", desc: "Subnet reverse PTR discovery" },
+      { num: "07", cmd: "dnsrecon -d example.com -t crt -j ct.json", desc: "Certificate transparency hostname discovery" },
+      { num: "08", cmd: "dnsrecon -d example.com -t caa --tcp", desc: "CAA policy TCP auditing" },
+      { num: "09", cmd: "dnsrecon -d example.com -t zonewalk --lifetime 5", desc: "DNSSEC NSEC traversal assessment" },
+      { num: "10", cmd: "dnsrecon -d example.com -t std -s -j spf.json", desc: "SPF netblock reverse mapping" },
+      { num: "11", cmd: "dnsrecon -d example.com -t std -k -c ct.csv", desc: "Transparency enriched DNS inventory" },
+      { num: "12", cmd: "dnsrecon -d example.com -t std -w --threads 5", desc: "Whois netblock pivot discovery" },
+      { num: "13", cmd: "dnsrecon -d example.com -t std,axfr,srv -x audit.xml", desc: "Consolidated multitechnique DNS report" },
+      { num: "14", cmd: "dnsrecon -iL domains.txt -t std -j inventory.json", desc: "Multi-domain DNS inventory export" },
+      { num: "15", cmd: "dnsrecon -d example.com -t brt -D words.txt --lifetime 5 --db recon.db", desc: "Persistent resilient hostname enumeration" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "11 / 13 • WEB PROBING",
+    name: "HTTPX",
+    subtitle: "WEB SERVICE FINGERPRINTING",
+    desc: "Fast, multi-purpose HTTP toolkit for web probing, status/tech detection, favicon hashing, and screenshot capture.",
+    installCmd: "go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest",
+    url: "https://github.com/projectdiscovery/httpx",
+    commands: [
+      { num: "01", cmd: "httpx -l subs.txt -sc -title -td -silent", desc: "Web status technology profiling" },
+      { num: "02", cmd: "httpx -l subs.txt -server -ip -cname -silent", desc: "Web infrastructure identity correlation" },
+      { num: "03", cmd: "httpx -l subs.txt -cl -ct -rt -silent", desc: "Content size latency profiling" },
+      { num: "04", cmd: "httpx -l subs.txt -p http:80,8080,https:443,8443 -sc -silent", desc: "Multiport HTTP HTTPS discovery" },
+      { num: "05", cmd: "httpx -l subs.txt -mc 200,301,302 -silent", desc: "Responsive redirect status selection" },
+      { num: "06", cmd: "httpx -l subs.txt -fc 403,404 -silent", desc: "Restricted error response filtering" },
+      { num: "07", cmd: "httpx -l subs.txt -jarm -tls-grab -silent", desc: "TLS fingerprint correlation results" },
+      { num: "08", cmd: "httpx -l subs.txt -cdn -asn -silent", desc: "CDN ownership infrastructure fingerprinting" },
+      { num: "09", cmd: "httpx -l subs.txt -http2 -websocket -silent", desc: "Modern protocol support discovery" },
+      { num: "10", cmd: "httpx -l subs.txt -favicon -hash sha256 -silent", desc: "Application fingerprint hash correlation" },
+      { num: "11", cmd: "httpx -l subs.txt -location -sc -silent", desc: "Redirect destination path inspection" },
+      { num: "12", cmd: "httpx -l subs.txt -path /health,/status -sc -silent", desc: "Application health endpoint inspection" },
+      { num: "13", cmd: "httpx -l subs.txt -fd -fep -silent", desc: "Deduplicated error page filtering" },
+      { num: "14", cmd: "httpx -l subs.txt -ss -esb -ehb -j -o screenshots.jsonl", desc: "Visual web inventory capture" },
+      { num: "15", cmd: "httpx -l subs.txt -sc -title -j -rl 30 -o web.jsonl", desc: "Rate limited structured inventory" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "12 / 13 • TLS AUDITING",
+    name: "TLSX",
+    subtitle: "CERTIFICATE & TLS AUDITING",
+    desc: "Fast TLS data grabber for SAN/CN extraction, cipher suite auditing, expired cert detection, and JARM/JA3 fingerprinting.",
+    installCmd: "go install github.com/projectdiscovery/tlsx/cmd/tlsx@latest",
+    url: "https://github.com/projectdiscovery/tlsx",
+    commands: [
+      { num: "01", cmd: "tlsx -l hosts.txt -san -cn -silent", desc: "Certificate hostname relationship discovery" },
+      { num: "02", cmd: "tlsx -l hosts.txt -tv -cipher -silent", desc: "Negotiated TLS cipher identification" },
+      { num: "03", cmd: "tlsx -l hosts.txt -ce -ct weak -silent", desc: "Weak cipher suite enumeration" },
+      { num: "04", cmd: "tlsx -l hosts.txt -ex -silent", desc: "Expired certificate exposure filtering" },
+      { num: "05", cmd: "tlsx -l hosts.txt -ss -mm -silent", desc: "Self-signed mismatched certificate checks" },
+      { num: "06", cmd: "tlsx -l hosts.txt -un -re -silent", desc: "Trust revocation anomaly detection" },
+      { num: "07", cmd: "tlsx -l hosts.txt -jarm -ja3 -silent", desc: "Dual TLS fingerprint collection" },
+      { num: "08", cmd: "tlsx -l hosts.txt -hash sha256 -se -silent", desc: "Certificate hash serial inventory" },
+      { num: "09", cmd: "tlsx -l hosts.txt -ve -silent", desc: "Supported TLS version enumeration" },
+      { num: "10", cmd: "tlsx -u example.com -min-version tls12 -tv", desc: "Modern TLS negotiation verification" },
+      { num: "11", cmd: "tlsx -u example.com -max-version tls11 -tv", desc: "Legacy TLS compatibility detection" },
+      { num: "12", cmd: "tlsx -l hosts.txt -p 443,8443 -san -silent", desc: "Multiport certificate hostname discovery" },
+      { num: "13", cmd: "tlsx -l hosts.txt -sa -iv 4,6 -cn -silent", desc: "Dual stack certificate mapping" },
+      { num: "14", cmd: "tlsx -l hosts.txt -cert -tc -j -o certs.jsonl", desc: "Complete certificate chain export" },
+      { num: "15", cmd: "tlsx -l hosts.txt -san -cn -ro -silent | sort -u", desc: "Deduplicated certificate hostname extraction" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "13 / 13 • TEMPLATE CHECKS",
+    name: "NUCLEI",
+    subtitle: "TEMPLATE-BASED SECURITY CHECKS",
+    desc: "Fast, customizable vulnerability and misconfiguration scanner powered by community YAML templates.",
+    installCmd: "go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest",
+    url: "https://github.com/projectdiscovery/nuclei",
+    commands: [
+      { num: "01", cmd: "nuclei -l urls.txt -tags tech -severity info -rl 20", desc: "Technology fingerprint template assessment" },
+      { num: "02", cmd: "nuclei -l urls.txt -tags misconfig -severity low,medium -rl 20", desc: "Security configuration issue screening" },
+      { num: "03", cmd: "nuclei -l urls.txt -tags exposure -severity low,medium -rl 20", desc: "Information exposure signal detection" },
+      { num: "04", cmd: "nuclei -l domains.txt -pt dns -severity info,low -rl 10", desc: "DNS template security assessment" },
+      { num: "05", cmd: "nuclei -l urls.txt -pt ssl -severity info,low -rl 10", desc: "TLS template security validation" },
+      { num: "06", cmd: "nuclei -l urls.txt -t http/technologies/ -rl 20", desc: "Specialized HTTP technology detection" },
+      { num: "07", cmd: "nuclei -l urls.txt -t http/misconfiguration/ -rl 20", desc: "HTTP misconfiguration template coverage" },
+      { num: "08", cmd: "nuclei -l urls.txt -etags dos,fuzz -severity medium -rl 15", desc: "Excluded aggressive template categories" },
+      { num: "09", cmd: "nuclei -l urls.txt -s critical,high -etags dos,fuzz -rl 10", desc: "Prioritized high severity checks" },
+      { num: "10", cmd: "nuclei -l urls.txt -as -rl 15", desc: "Technology guided automatic scanning" },
+      { num: "11", cmd: "nuclei -l urls.txt -auto-tech -severity info,low -rl 20", desc: "Product aware template filtering" },
+      { num: "12", cmd: "nuclei -l urls.txt -nt -rl 15", desc: "Recently added template screening" },
+      { num: "13", cmd: "nuclei -l urls.txt -tags tech -j -o nuclei.jsonl", desc: "Structured technology findings export" },
+      { num: "14", cmd: "nuclei -u https://example.com -tags tech -c 5 -bs 5 -rl 10", desc: "Bounded single-host template execution" },
+      { num: "15", cmd: "nuclei -l urls.txt -tags tech -plan scan-plan.jsonl", desc: "Preflight scan cost planning" }
+    ]
+  }
+];
+
+const categories = document.getElementById('categories');
+const toolsEl = document.getElementById('tools');
+const search = document.getElementById('search');
+const platform = document.getElementById('platform');
+let active = 'all';
+
+const standardTools = raw.flatMap((cat, ci)=>cat[1].map((t,ti)=>({
+  type: 'standard',
+  category: cat[0],
+  name: t[0].trim(),
+  desc: t[1],
+  cmd: t[2],
+  url: t[3],
+  id: 'std-'+ci+'-'+ti
+})));
+
+const cliTools = cliCheatsheets.map((t, idx)=>({
+  type: 'cli',
+  category: t.category,
+  badge: t.badge,
+  name: t.name,
+  subtitle: t.subtitle,
+  desc: t.desc,
+  cmd: t.installCmd,
+  url: t.url,
+  commands: t.commands,
+  id: 'cli-'+idx
+}));
+
+const allTools = [...standardTools, ...cliTools];
+const allCategories = [
+  ...raw.map(c=>({ name: c[0], count: c[1].length })),
+  { name: "16. CLI Usage Cheatsheets (2026)", count: cliTools.length }
+];
+
+document.getElementById('categoryTotal').textContent = allCategories.length;
+document.getElementById('toolTotal').textContent = allTools.length;
+
+function safeDomain(url){
+  try{return new URL(url).hostname.replace(/^www\./,'');}catch(e){return '';}
+}
+function initials(name){return name.trim().split(/\s+/).slice(0,2).map(x=>x[0]||'').join('').toUpperCase();}
+function renderCategories(){
+  const total = allTools.length;
+  categories.innerHTML = `<button class="cat ${active==='all'?'active':''}" data-cat="all"><strong>ALL CATEGORIES</strong><small>${total} TOOLS</small></button>` + allCategories.map(c=>`<button class="cat ${active===c.name?'active':''}" data-cat="${escapeAttr(c.name)}"><strong>${escapeHTML(c.name)}</strong><small>${c.count} TOOLS</small></button>`).join('');
+  categories.querySelectorAll('.cat').forEach(b=>b.addEventListener('click',()=>{active=b.dataset.cat;renderCategories();renderTools();}));
+}
+function isBasicUtility(name){
+  return ['curl','wget','git','python','nano','vim','jq','htop','tmux','rclone','rsync','sha256sum','openssl','openssh','iproute2','mtr','whois','dig','host','nslookup','exiftool'].includes(name.toLowerCase());
+}
+function renderTools(){
+  const q=search.value.toLowerCase().trim();
+  let list=allTools.filter(t=>{
+    if(active!=='all' && t.category!==active) return false;
+    if(!q) return true;
+    const cliText = t.type==='cli' ? (' '+t.subtitle+' '+t.cmd+' '+t.commands.map(c=>c.cmd+' '+c.desc).join(' ')) : '';
+    return (t.name+' '+t.desc+' '+t.category+cliText).toLowerCase().includes(q);
+  });
+  if(platform.value==='termux') list=list.filter(t=>t.cmd.startsWith('pkg install')||t.cmd.startsWith('pip install')||t.cmd.startsWith('go install')||t.cmd.startsWith('npm install')||t.cmd.startsWith('gem install')||t.cmd.startsWith('git clone')||t.cmd.startsWith('cargo install')||t.cmd==='Android app'||t.cmd==='Android app / official installer');
+  if(platform.value==='linux') list=list.filter(t=>t.cmd.startsWith('apt install')||t.cmd.startsWith('pip install')||t.cmd.startsWith('go install')||t.cmd.startsWith('npm install')||t.cmd.startsWith('gem install')||t.cmd.startsWith('cargo install'));
+  document.getElementById('listTitle').textContent=active==='all'?'// ALL SECURITY TOOLS':'// '+active.toUpperCase();
+  document.getElementById('count').textContent=list.length+' RESULTS';
+  toolsEl.innerHTML=list.length?list.map(t=>{
+    const domain=safeDomain(t.url);
+    const logoUrl=domain?'https://www.google.com/s2/favicons?domain='+encodeURIComponent(domain)+'&sz=64':'';
+    if(t.type==='cli'){
+      return `<article class="card cli-card" id="${escapeAttr(t.id)}">
+        <div class="card-top">
+          <div class="tool-identity">
+            <span class="tool-logo">${logoUrl?`<img src="${logoUrl}" alt="" loading="lazy" onerror="this.remove();this.parentElement.textContent='${escapeAttr(initials(t.name))}'">`:escapeHTML(initials(t.name))}</span>
+            <div>
+              <h3>${escapeHTML(t.name)} <span style="color:#ff6268;font-size:11px;font-weight:400">// ${escapeHTML(t.subtitle)}</span></h3>
+            </div>
+          </div>
+          <span class="pill">${escapeHTML(t.badge)}</span>
+        </div>
+        <p>${escapeHTML(t.desc)}</p>
+        <div class="cli-install-wrap">
+          <div class="cli-label"><span>INSTALLATION COMMAND</span></div>
+          <div class="cli-install-box">
+            <code>${escapeHTML(t.cmd)}</code>
+            <button class="cli-copy copy" data-command="${escapeAttr(t.cmd)}">COPY INSTALL</button>
+          </div>
+        </div>
+        <div class="cli-label">
+          <span>USAGE COMMANDS (${t.commands.length} COMMANDS)</span>
+          <button type="button" class="cli-toggle" data-target="list-${escapeAttr(t.id)}">EXPAND ALL</button>
+        </div>
+        <div class="cli-list" id="list-${escapeAttr(t.id)}">
+          ${t.commands.map(c=>`<div class="cli-item">
+            <div class="cli-item-head">
+              <span class="cli-num">#${escapeHTML(c.num)}</span>
+              <span class="cli-desc">${escapeHTML(c.desc)}</span>
+            </div>
+            <div class="cli-cmd-row">
+              <code>${escapeHTML(c.cmd)}</code>
+              <button class="cli-copy copy" data-command="${escapeAttr(c.cmd)}">COPY</button>
+            </div>
+          </div>`).join('')}
+        </div>
+        <div class="card-actions">
+          <a class="official" href="${escapeAttr(t.url)}" target="_blank" rel="noopener noreferrer">OFFICIAL WEBSITE ↗</a>
+          <span style="color:#887d7d;font-size:10px">TOP NETWORK SCANNING TOOLS / 2026</span>
+        </div>
+      </article>`;
+    }
+    const commandAllowed=isBasicUtility(t.name);
+    const commandText=commandAllowed?t.cmd:'Check official documentation; availability depends on your device and platform.';
+    return `<article class="card"><div class="card-top"><div class="tool-identity"><span class="tool-logo">${logoUrl?`<img src="${logoUrl}" alt="" loading="lazy" onerror="this.remove();this.parentElement.textContent='${escapeAttr(initials(t.name))}'">`:escapeHTML(initials(t.name))}</span><h3>${escapeHTML(t.name)}</h3></div><span class="pill">SECURITY TOOL</span></div><p>${escapeHTML(t.desc)}</p><div class="command">${escapeHTML(commandText)}</div><div class="card-actions"><a class="official" href="${escapeAttr(t.url)}" target="_blank" rel="noopener noreferrer">OFFICIAL WEBSITE ↗</a>${commandAllowed?`<button class="copy" data-command="${escapeAttr(t.cmd)}">COPY COMMAND</button>`:''}</div></article>`;
+  }).join(''):'<div class="empty">NO TOOLS FOUND. TRY ANOTHER SEARCH.</div>';
+
+  toolsEl.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+    const orig = b.textContent;
+    try{
+      await navigator.clipboard.writeText(b.dataset.command);
+      b.textContent='COPIED ✓';
+      setTimeout(()=>b.textContent=orig,1300);
+    }catch(e){
+      b.textContent='FAILED';
+      setTimeout(()=>b.textContent=orig,1300);
+    }
+  }));
+
+  toolsEl.querySelectorAll('.cli-toggle').forEach(btn=>btn.addEventListener('click',()=>{
+    const listEl = document.getElementById(btn.dataset.target);
+    if(!listEl) return;
+    const isExp = listEl.classList.toggle('expanded');
+    btn.textContent = isExp ? 'COLLAPSE' : 'EXPAND ALL';
+  }));
+}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function escapeAttr(s){return escapeHTML(s);}
+search.addEventListener('input',renderTools);
+platform.addEventListener('change',renderTools);
+renderCategories();
+renderTools();
+</script>
+</body>
+</html>
