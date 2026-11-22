@@ -71,9 +71,29 @@ h1{ text-shadow:0 8px 35px #000 }
 .empty{grid-column:1/-1}
 .note{border-radius:0 8px 8px 0}
 footer{line-height:1.8}
-@media(max-width:700px){.nav{flex-wrap:wrap}.nav-links{order:3;width:100%;justify-content:center;margin:8px 0 0;padding-top:10px;border-top:1px solid #291013}.nav-links a{font-size:10px}.online{font-size:9px}.hero{padding-top:48px}.hero:after{display:none}.toolbar{top:95px}.tools{grid-template-columns:1fr}}
-@media(max-width:390px){.nav small{font-size:8px;letter-spacing:1px}.logo{font-size:21px}.toolbar input{min-width:100%}.toolbar select{width:100%}.tools{grid-template-columns:minmax(0,1fr)}}
 
+/* CLI Cheatsheet Cards Extension */
+.card.cli-card{grid-column:1/-1;background:linear-gradient(145deg,#190b0d,#0b0808);border-color:#5b1d22}
+.cli-install-wrap{margin-bottom:12px}
+.cli-label{font-size:10px;color:#ff6268;letter-spacing:1.5px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.cli-install-box{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#050505;border:1px solid #3c1519;border-radius:6px;padding:8px 10px}
+.cli-install-box code{color:#ff858a;font-size:11px;overflow-wrap:anywhere}
+.cli-toggle{background:#1b0c0e;color:#ff858a;border:1px solid #5e2026;border-radius:5px;padding:5px 10px;font-size:10px}
+.cli-toggle:hover{border-color:var(--red);color:#fff}
+.cli-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:8px;max-height:360px;overflow-y:auto;padding-right:4px}
+.cli-list.expanded{max-height:none}
+.cli-item{background:#060505;border:1px solid #2e1215;border-radius:6px;padding:9px 10px;display:flex;flex-direction:column;justify-content:space-between;gap:7px}
+.cli-item:hover{border-color:#682329}
+.cli-item-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.cli-num{color:var(--red);font-weight:bold;font-size:10px;flex-shrink:0}
+.cli-desc{color:#b7abab;font-size:10.5px;line-height:1.4;flex:1}
+.cli-cmd-row{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#0c0808;border:1px solid #230e10;border-radius:4px;padding:6px 8px}
+.cli-cmd-row code{color:#ff777c;font-size:11px;line-height:1.45;overflow-wrap:anywhere;word-break:break-word}
+.cli-copy{background:#a81720;color:#fff;border:0;border-radius:4px;padding:5px 8px;font-size:9.5px;white-space:nowrap;flex-shrink:0}
+.cli-copy:hover{background:#e12630}
+
+@media(max-width:700px){.nav{flex-wrap:wrap}.nav-links{order:3;width:100%;justify-content:center;margin:8px 0 0;padding-top:10px;border-top:1px solid #291013}.nav-links a{font-size:10px}.online{font-size:9px}.hero{padding-top:48px}.hero:after{display:none}.toolbar{top:95px}.tools{grid-template-columns:1fr}.cli-list{grid-template-columns:1fr}}
+@media(max-width:390px){.nav small{font-size:8px;letter-spacing:1px}.logo{font-size:21px}.toolbar input{min-width:100%}.toolbar select{width:100%}.tools{grid-template-columns:minmax(0,1fr)}.cli-install-box,.cli-cmd-row{flex-direction:column;align-items:stretch}.cli-copy{text-align:center}}
 </style>
 </head>
 <body>
@@ -81,14 +101,14 @@ footer{line-height:1.8}
 <section class="hero" id="home">
  <div class="tag">[ WELCOME TO THE DIGITAL UNDERGROUND ]</div>
  <h1>EXPLORE THE<br><b>CYBER WORLD.</b></h1>
- <p>A dark-themed directory for learning cybersecurity, defensive security, and authorized security auditing. Explore tools, read their purpose, and copy installation commands where supported.</p>
- <div class="stats"><div class="stat"><strong id="categoryTotal">15</strong> CATEGORIES</div><div class="stat"><strong id="toolTotal">225</strong> TOOLS</div><div class="stat"><strong>100%</strong> DARK UI</div></div>
+ <p>A dark-themed directory for learning cybersecurity, defensive security, and authorized security auditing. Explore tools, read their purpose, and copy installation &amp; CLI commands where supported.</p>
+ <div class="stats"><div class="stat"><strong id="categoryTotal">16</strong> CATEGORIES</div><div class="stat"><strong id="toolTotal">238</strong> TOOLS</div><div class="stat"><strong>100%</strong> DARK UI</div></div>
 </section>
 <main id="directory">
- <div class="section-title"><h2>// TOOL DIRECTORY</h2><span>SELECT A CATEGORY OR SEARCH ALL TOOLS</span></div>
- <div class="toolbar"><input id="search" type="search" placeholder="⌕ Search tool or category..."><select id="platform"><option value="all">All platforms</option><option value="termux">Termux-friendly commands</option><option value="linux">Linux / Kali commands</option></select></div>
+ <div class="section-title"><h2>// TOOL DIRECTORY</h2><span>SELECT A CATEGORY OR SEARCH ALL TOOLS &amp; COMMANDS</span></div>
+ <div class="toolbar"><input id="search" type="search" placeholder="⌕ Search tool, category, or CLI command..."><select id="platform"><option value="all">All platforms</option><option value="termux">Termux-friendly commands</option><option value="linux">Linux / Kali commands</option></select></div>
  <div class="categories" id="categories"></div>
- <div class="section-title"><h2 id="listTitle">// ALL SECURITY TOOLS</h2><span id="count">225 RESULTS</span></div>
+ <div class="section-title"><h2 id="listTitle">// ALL SECURITY TOOLS</h2><span id="count">238 RESULTS</span></div>
  <div class="tools" id="tools"></div>
  <div class="note" id="about"><b>IMPORTANT:</b> Tool support and package names can change. Some desktop tools do not run directly on Android/Termux. Verify each tool's official documentation before installing. Use security tools only on systems you own or have explicit permission to test. This directory does not provide attack instructions.</div>
 </main>
@@ -351,13 +371,384 @@ const raw = [
 ["Netdata","Real-time system and service monitoring.","Official install guide","https://www.netdata.cloud/"]
 ]]
 ];
+
+const cliCheatsheets = [
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "01 / 13 • NETWORK",
+    name: "NMAP",
+    subtitle: "ADVANCED NETWORK ENUMERATION",
+    desc: "Advanced network enumeration, port scanning, OS fingerprinting, and NSE script auditing.",
+    installCmd: "apt install nmap",
+    url: "https://nmap.org/",
+    commands: [
+      { num: "01", cmd: "sudo nmap -sS -p- -T4 --open 10.10.10.10", desc: "Full TCP port sweep" },
+      { num: "02", cmd: "nmap -sV --version-all -p 21,22,80,443 10.10.10.10", desc: "Deep service version detection" },
+      { num: "03", cmd: "sudo nmap -sU --top-ports 100 -sV --open 10.10.10.10", desc: "Common UDP service profiling" },
+      { num: "04", cmd: "sudo nmap -O --osscan-guess -p 22,80,443 10.10.10.10", desc: "Operating system fingerprint analysis" },
+      { num: "05", cmd: "nmap -Pn -p 80,443,8080 --script http-title,http-headers 10.10.10.10", desc: "HTTP title header inspection" },
+      { num: "06", cmd: "nmap -sV -p 443 --script ssl-cert,ssl-enum-ciphers 10.10.10.10", desc: "TLS certificate cipher audit" },
+      { num: "07", cmd: "nmap -sV -p 22 --script ssh-hostkey,ssh2-enum-algos 10.10.10.10", desc: "SSH keys algorithms enumeration" },
+      { num: "08", cmd: "nmap -sV -p 53 --script dns-recursion,dns-nsid 10.10.10.10", desc: "DNS service configuration checks" },
+      { num: "09", cmd: "nmap -sV -p 445 --script smb-protocols,smb2-security-mode 10.10.10.10", desc: "SMB protocol security checks" },
+      { num: "10", cmd: "nmap -sV -p 3389 --script rdp-ntlm-info,rdp-enum-encryption 10.10.10.10", desc: "RDP encryption capability assessment" },
+      { num: "11", cmd: "nmap -sn -PS22,80,443 -PA3389 -PE 10.10.10.0/24", desc: "Combined host discovery probes" },
+      { num: "12", cmd: "nmap -sT --top-ports 1000 --open --reason 10.10.10.0/24", desc: "TCP discovery response reasons" },
+      { num: "13", cmd: "nmap -sV --script banner -p 21,22,25,110 10.10.10.10", desc: "Application banner identification checks" },
+      { num: "14", cmd: "nmap -sV -p 80,443 --script http-methods,http-security-headers 10.10.10.10", desc: "HTTP security header checks" },
+      { num: "15", cmd: "nmap -iL targets.txt -sV --open -oX services.xml", desc: "Structured multi-target service inventory" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "02 / 13 • PORT DISCOVERY",
+    name: "MASSCAN",
+    subtitle: "HIGH-SPEED PORT DISCOVERY",
+    desc: "Asynchronous high-speed TCP/UDP port discovery, banner grabbing, and distributed network scanning.",
+    installCmd: "apt install masscan",
+    url: "https://github.com/robertdavidgraham/masscan",
+    commands: [
+      { num: "01", cmd: "sudo masscan 10.10.10.0/24 -p1-65535 --rate 800", desc: "Full-range internal port discovery" },
+      { num: "02", cmd: "sudo masscan 10.10.10.0/24 -p80,443,8080 --banners --rate 300", desc: "HTTP service banner capture" },
+      { num: "03", cmd: "sudo masscan 10.10.10.0/24 -pU:53,U:123,U:161 --rate 200", desc: "Selected UDP service discovery" },
+      { num: "04", cmd: "sudo masscan 10.10.10.0/24 -p22,3389,445 --rate 250 -oJ admin.json", desc: "Remote administration exposure report" },
+      { num: "05", cmd: "sudo masscan 10.10.10.0/24 -p1-1024 --rate 500 -oX lowports.xml", desc: "Well-known port inventory export" },
+      { num: "06", cmd: "sudo masscan 10.10.10.0/24 -p443 --rate 100 --wait 5", desc: "TLS endpoint response collection" },
+      { num: "07", cmd: "sudo masscan -iL targets.txt -p80,443 --rate 150 -oL web.lst", desc: "File-driven web port discovery" },
+      { num: "08", cmd: "sudo masscan 10.10.10.0/24 -p1-4096 --excludefile excluded.txt --rate 200", desc: "Scope-aware exclusion controlled scanning" },
+      { num: "09", cmd: "sudo masscan 10.10.10.0/24 -p22,80 --ping --rate 100", desc: "Combined ICMP TCP discovery" },
+      { num: "10", cmd: "sudo masscan 10.10.10.0/24 -p21,22,25 --banners --rate 100", desc: "Remote service fingerprint collection" },
+      { num: "11", cmd: "sudo masscan 10.10.10.0/24 -p80,443 -oB snapshot.scan --rate 200", desc: "Compact binary results capture" },
+      { num: "12", cmd: "masscan --readscan snapshot.scan -oJ converted.json", desc: "Binary results JSON conversion" },
+      { num: "13", cmd: "sudo masscan 10.10.10.0/24 -p1-1024 --resume-index 0 --resume-count 5000 --rate 200", desc: "Segmented bounded scan execution" },
+      { num: "14", cmd: "sudo masscan 10.10.10.0/24 -p80,443 --shard 1/2 --rate 150", desc: "Distributed scan partition execution" },
+      { num: "15", cmd: "sudo masscan 10.10.10.0/24 -p443 --rate 10 --offline --packet-trace", desc: "Offline packet generation inspection" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "03 / 13 • RAPID PORTS",
+    name: "RUSTSCAN",
+    subtitle: "RAPID PORT WORKFLOWS",
+    desc: "Fast port scanner written in Rust that automatically pipes discovered open ports into Nmap.",
+    installCmd: "cargo install rustscan",
+    url: "https://github.com/RustScan/RustScan",
+    commands: [
+      { num: "01", cmd: "rustscan -a 10.10.10.10 -b 300 -t 1500 -- -sV", desc: "Fast ports service enrichment" },
+      { num: "02", cmd: "rustscan -a 10.10.10.10 -r 1-1024 -b 200 -- -sC", desc: "Common ports scripted checks" },
+      { num: "03", cmd: "rustscan -a 10.10.10.10 -p 80,443,8080 -- -sV", desc: "Web port service profiling" },
+      { num: "04", cmd: "rustscan -a 10.10.10.10 -b 100 -t 2500 -- -O", desc: "Conservative operating system fingerprinting" },
+      { num: "05", cmd: "rustscan -a 10.10.10.0/24 -b 50 -t 2000 -- -sV", desc: "Subnet service inventory workflow" },
+      { num: "06", cmd: "rustscan -a 10.10.10.10 --scan-order random -b 150 -- -sV", desc: "Randomized port ordering analysis" },
+      { num: "07", cmd: "rustscan -a 10.10.10.10 -g -b 100 > openports.txt", desc: "Machine readable port export" },
+      { num: "08", cmd: "rustscan -a 10.10.10.10 -u 4096 -b 1000 -- -sV", desc: "Elevated descriptor batch scanning" },
+      { num: "09", cmd: "rustscan -a 10.10.10.10 -r 8000-9000 -t 3000 -- -sV", desc: "Alternate web port identification" },
+      { num: "10", cmd: "rustscan -a 10.10.10.10 -p 22,2222 -- -sV --script ssh2-enum-algos", desc: "SSH algorithm assessment pipeline" },
+      { num: "11", cmd: "rustscan -a 10.10.10.10 -p 445 -- -sV --script smb-protocols", desc: "SMB dialect validation workflow" },
+      { num: "12", cmd: "rustscan -a 10.10.10.10 -p 443,8443 -- -sV --script ssl-cert", desc: "Certificate discovery across ports" },
+      { num: "13", cmd: "rustscan -a 10.10.10.10 -p 3389 -- -sV --script rdp-enum-encryption", desc: "RDP encryption mode inspection" },
+      { num: "14", cmd: "rustscan -a 10.10.10.10 -b 25 -t 5000 -- -sV", desc: "Low impact service assessment" },
+      { num: "15", cmd: "rustscan -a 10.10.10.10 -n -b 200 -- -sV -oN audit.txt", desc: "Config independent service inventory" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "04 / 13 • PORT RECON",
+    name: "NAABU",
+    subtitle: "TARGETED PORT RECON",
+    desc: "Fast, reliable port scanner from ProjectDiscovery with SYN/CONNECT scanning, CDN exclusion, and Nmap handoff.",
+    installCmd: "go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest",
+    url: "https://github.com/projectdiscovery/naabu",
+    commands: [
+      { num: "01", cmd: "naabu -host 10.10.10.10 -p 1-65535 -rate 200 -silent", desc: "Full TCP exposure inventory" },
+      { num: "02", cmd: "naabu -l hosts.txt -top-ports 1000 -rate 150 -o ports.txt", desc: "Prioritized common port discovery" },
+      { num: "03", cmd: "naabu -host 10.10.10.10 -p 22,80,443,445 -s s -rate 100", desc: "Selected SYN port enumeration" },
+      { num: "04", cmd: "naabu -host example.com -scan-all-ips -p 80,443 -silent", desc: "Multihomed domain port mapping" },
+      { num: "05", cmd: "naabu -l hosts.txt -exclude-ports 25,110 -top-ports 1000", desc: "Excluded service port inventory" },
+      { num: "06", cmd: "naabu -host 10.10.10.10 -sV -p 21,22,80 -silent", desc: "Direct service version discovery" },
+      { num: "07", cmd: "naabu -host 10.10.10.10 -sD -sV -p 22,443 -rate 60", desc: "Integrated service fingerprint probing" },
+      { num: "08", cmd: "naabu -host example.com -passive -silent", desc: "Passive internet port intelligence" },
+      { num: "09", cmd: "naabu -host 10.10.10.0/24 -sn -pe -rate 100", desc: "ICMP subnet host discovery" },
+      { num: "10", cmd: "naabu -host 10.10.10.0/24 -sn -arp -rate 100", desc: "ARP subnet host discovery" },
+      { num: "11", cmd: "naabu -host 10.10.10.10 -wn -ps 80,443 -p 1-1024", desc: "SYN verified host scanning" },
+      { num: "12", cmd: "naabu -l hosts.txt -p 80,443 -j -o ports.jsonl", desc: "Structured web port export" },
+      { num: "13", cmd: "naabu -host 10.10.10.10 -p 1-4096 -verify -rate 100", desc: "Validated TCP exposure results" },
+      { num: "14", cmd: "naabu -host 10.10.10.10 -p 22,443 -nmap-cli 'nmap -sV'", desc: "Automated Nmap enrichment handoff" },
+      { num: "15", cmd: "naabu -l hosts.txt -top-ports 1000 -exclude-cdn -silent", desc: "CDN-aware port inventory scoping" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "05 / 13 • NETWORK SURVEYS",
+    name: "ZMAP",
+    subtitle: "LARGE NETWORK SURVEYS",
+    desc: "Fast single-packet network scanner designed for large-scale internet and subnet research surveys.",
+    installCmd: "apt install zmap",
+    url: "https://zmap.io/",
+    commands: [
+      { num: "01", cmd: "sudo zmap -p 80 -r 100 10.10.10.0/24 -o http.csv", desc: "Bounded HTTP host survey" },
+      { num: "02", cmd: "sudo zmap -p 22,80,443 -r 150 10.10.10.0/24 -o ports.csv", desc: "Multiservice TCP exposure survey" },
+      { num: "03", cmd: "sudo zmap -M icmp_echoscan -r 100 10.10.10.0/24 -o alive.csv", desc: "Rapid ICMP reachability inventory" },
+      { num: "04", cmd: "sudo zmap -p 443 -w scopes.txt -r 100 -o tls.csv", desc: "Explicitly allowlisted TLS scanning" },
+      { num: "05", cmd: "sudo zmap -p 445 10.10.10.0/24 -b excluded.txt -r 50", desc: "Blocklisted SMB exposure mapping" },
+      { num: "06", cmd: "sudo zmap -p 80 -n 100 -r 50 10.10.10.0/24", desc: "Capped target sample survey" },
+      { num: "07", cmd: "sudo zmap -p 443 -N 20 -r 50 10.10.10.0/24", desc: "Result limited TLS discovery" },
+      { num: "08", cmd: "sudo zmap -p 22 -t 30 -r 40 10.10.10.0/24", desc: "Time bounded SSH survey" },
+      { num: "09", cmd: "sudo zmap -p 3389 -P 2 -r 50 10.10.10.0/24", desc: "Repeated RDP response probes" },
+      { num: "10", cmd: "sudo zmap -p 80 -e 2026 -r 50 10.10.10.0/24", desc: "Reproducible target sampling order" },
+      { num: "11", cmd: "sudo zmap -p 443 -f saddr,sport -r 100 10.10.10.0/24", desc: "Selected response field extraction" },
+      { num: "12", cmd: "sudo zmap -p 8080 -O json -r 50 10.10.10.0/24 -o http.json", desc: "JSON web survey results" },
+      { num: "13", cmd: "sudo zmap -p 22 -i eth0 -r 50 10.10.10.0/24", desc: "Bound interface scan execution" },
+      { num: "14", cmd: "sudo zmap -p 443 -r 50 --shards=2 --shard=0 --seed=42 10.10.10.0/24", desc: "Reproducible distributed survey partition" },
+      { num: "15", cmd: "sudo zmap -M icmp_echoscan -P 3 -r 50 10.10.10.0/24", desc: "Resilient repeated ICMP discovery" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "06 / 13 • LOCAL MAPPING",
+    name: "ARP-SCAN",
+    subtitle: "LOCAL NETWORK MAPPING",
+    desc: "Layer-2 ARP host discovery tool for mapping local LAN devices, MAC addresses, vendors, and VLANs.",
+    installCmd: "apt install arp-scan",
+    url: "https://github.com/royhills/arp-scan",
+    commands: [
+      { num: "01", cmd: "sudo arp-scan -I eth0 -l --rtt", desc: "Local devices latency mapping" },
+      { num: "02", cmd: "sudo arp-scan -I eth0 10.10.10.0/24 --retry=3", desc: "Reliable subnet device discovery" },
+      { num: "03", cmd: "sudo arp-scan -I eth0 -f hosts.txt --plain", desc: "File-based local host inventory" },
+      { num: "04", cmd: "sudo arp-scan -I eth0 10.10.10.1-10.10.10.50 --plain", desc: "Focused LAN device enumeration" },
+      { num: "05", cmd: "sudo arp-scan -I eth0 -l --plain --format='${ip},${mac},${vendor}'", desc: "Structured vendor inventory export" },
+      { num: "06", cmd: "sudo arp-scan -I eth0 -l --numeric --quiet", desc: "Minimal IP MAC mapping" },
+      { num: "07", cmd: "sudo arp-scan -I eth0 -l --ignoredups --rtt", desc: "Deduplicated device latency inventory" },
+      { num: "08", cmd: "sudo arp-scan -I eth0 -l --bandwidth=64K --retry=3", desc: "Bandwidth controlled ARP discovery" },
+      { num: "09", cmd: "sudo arp-scan -I eth0 -l --interval=20 --timeout=800", desc: "Tuned ARP retry timing" },
+      { num: "10", cmd: "sudo arp-scan -I eth0 -l --random --randomseed=2026", desc: "Reproducible randomized target ordering" },
+      { num: "11", cmd: "sudo arp-scan -I eth0 -l --resolve --plain", desc: "Reverse resolved device inventory" },
+      { num: "12", cmd: "sudo arp-scan -I eth0 -l --pcapsavefile=arp.pcap", desc: "Raw ARP evidence capture" },
+      { num: "13", cmd: "sudo arp-scan -I eth0 -l --limit=20", desc: "Minimum responder count validation" },
+      { num: "14", cmd: "sudo arp-scan -I eth0 --vlan=20 10.10.20.0/24", desc: "Tagged VLAN host discovery" },
+      { num: "15", cmd: "sudo arp-scan -I eth0 -l --ouifile=oui.txt --macfile=vendors.txt", desc: "Custom MAC vendor identification" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "07 / 13 • HOST AVAILABILITY",
+    name: "FPING",
+    subtitle: "HOST AVAILABILITY INTELLIGENCE",
+    desc: "High-performance parallel ICMP ping sweep utility for host availability, latency, and packet loss diagnostics.",
+    installCmd: "apt install fping",
+    url: "https://fping.org/",
+    commands: [
+      { num: "01", cmd: "fping -a -g 10.10.10.0/24 -r 1", desc: "Active subnet host listing" },
+      { num: "02", cmd: "fping -u -g 10.10.10.0/24 -r 2", desc: "Unreachable subnet host listing" },
+      { num: "03", cmd: "fping -c 5 -q -g 10.10.10.0/24", desc: "Subnet packet loss statistics" },
+      { num: "04", cmd: "fping -C 5 -q < hosts.txt", desc: "Per-host latency sample series" },
+      { num: "05", cmd: "fping -a -i 20 -t 500 -g 10.10.10.0/24", desc: "Rate tuned availability sweeping" },
+      { num: "06", cmd: "fping -a -g 10.10.10.10 10.10.10.100", desc: "Bounded address range discovery" },
+      { num: "07", cmd: "fping -c 10 -p 200 -q 10.10.10.10", desc: "Short interval latency sampling" },
+      { num: "08", cmd: "fping -c 10 -p 500 -D 10.10.10.10", desc: "Timestamped host latency measurements" },
+      { num: "09", cmd: "fping -l -Q 10 10.10.10.10", desc: "Continuous interval health monitoring" },
+      { num: "10", cmd: "fping -c 20 -o -q 10.10.10.10", desc: "Host outage duration estimation" },
+      { num: "11", cmd: "fping -a -n -g 10.10.10.0/24", desc: "Reachable reverse DNS enrichment" },
+      { num: "12", cmd: "fping -c 5 -e 10.10.10.10", desc: "Packet roundtrip time reporting" },
+      { num: "13", cmd: "fping -c 5 -M -b 1400 10.10.10.10", desc: "Fragmentation constrained MTU probing" },
+      { num: "14", cmd: "fping -a -I eth0 -g 10.10.10.0/24", desc: "Interface scoped reachability sweep" },
+      { num: "15", cmd: "fping -c 5 -q -t 800 -r 1 < hosts.txt", desc: "Reliable batch availability sampling" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "08 / 13 • DNS INTELLIGENCE",
+    name: "DNSX",
+    subtitle: "DNS RECORD INTELLIGENCE",
+    desc: "Fast and multi-purpose DNS toolkit for bulk record resolution, wildcard filtering, CDN attribution, and bruteforcing.",
+    installCmd: "go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest",
+    url: "https://github.com/projectdiscovery/dnsx",
+    commands: [
+      { num: "01", cmd: "dnsx -l subs.txt -a -resp -silent", desc: "IPv4 hostname resolution inventory" },
+      { num: "02", cmd: "dnsx -l subs.txt -aaaa -resp -silent", desc: "IPv6 hostname resolution inventory" },
+      { num: "03", cmd: "dnsx -l subs.txt -cname -resp -silent", desc: "CNAME alias relationship mapping" },
+      { num: "04", cmd: "dnsx -l domains.txt -mx -resp -silent", desc: "Mail exchanger infrastructure discovery" },
+      { num: "05", cmd: "dnsx -l domains.txt -ns -resp -silent", desc: "Authoritative nameserver footprint analysis" },
+      { num: "06", cmd: "dnsx -l domains.txt -txt -resp -silent", desc: "DNS TXT record inspection" },
+      { num: "07", cmd: "dnsx -l domains.txt -soa -resp -silent", desc: "Zone authority metadata lookup" },
+      { num: "08", cmd: "dnsx -l domains.txt -caa -resp -silent", desc: "Certificate authority policy discovery" },
+      { num: "09", cmd: "dnsx -d example.com -w dns-words.txt -rl 50 -silent", desc: "Wordlist based subdomain resolution" },
+      { num: "10", cmd: "dnsx -l subs.txt -a -rcode noerror -resp", desc: "Successful DNS response filtering" },
+      { num: "11", cmd: "dnsx -l subs.txt -a -r resolvers.txt -retry 3", desc: "Custom resolver reliability testing" },
+      { num: "12", cmd: "dnsx -l subs.txt -a -cdn -asn -silent", desc: "CDN ASN infrastructure attribution" },
+      { num: "13", cmd: "dnsx -l ips.txt -ptr -resp -silent", desc: "Reverse address record enumeration" },
+      { num: "14", cmd: "dnsx -wd example.com -wt 8 -silent", desc: "Wildcard DNS response assessment" },
+      { num: "15", cmd: "dnsx -l subs.txt -a -json -o dns.jsonl", desc: "Machine readable DNS exports" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "09 / 13 • SUBDOMAIN RECON",
+    name: "SUBFINDER",
+    subtitle: "PASSIVE SUBDOMAIN DISCOVERY",
+    desc: "Fast passive subdomain enumeration tool leveraging public intelligence sources, filters, and DNS pipelines.",
+    installCmd: "go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest",
+    url: "https://github.com/projectdiscovery/subfinder",
+    commands: [
+      { num: "01", cmd: "subfinder -d example.com -all -silent", desc: "Extended passive source enumeration" },
+      { num: "02", cmd: "subfinder -dL domains.txt -all -oD results", desc: "Multi-domain organized discovery results" },
+      { num: "03", cmd: "subfinder -d example.com -recursive -silent", desc: "Recursive capable provider enumeration" },
+      { num: "04", cmd: "subfinder -d example.com -s crtsh,github -silent", desc: "Selected intelligence provider queries" },
+      { num: "05", cmd: "subfinder -d example.com -es hackertarget -all -silent", desc: "Excluded source discovery workflow" },
+      { num: "06", cmd: "subfinder -d example.com -active -oI -silent", desc: "Validated subdomains with addresses" },
+      { num: "07", cmd: "subfinder -d example.com -active -rL resolvers.txt -silent", desc: "Resolver controlled active verification" },
+      { num: "08", cmd: "subfinder -d example.com -oJ -cs -o subs.jsonl", desc: "Attribution rich JSON exports" },
+      { num: "09", cmd: "subfinder -d example.com -m api,dev -silent", desc: "Matched development asset discovery" },
+      { num: "10", cmd: "subfinder -d example.com -f test,staging -silent", desc: "Filtered environment name exclusions" },
+      { num: "11", cmd: "subfinder -d example.com -rl 20 -all -silent", desc: "Throttled multi-provider reconnaissance workflow" },
+      { num: "12", cmd: "subfinder -dL domains.txt -max-time 15 -silent", desc: "Bounded batch reconnaissance duration" },
+      { num: "13", cmd: "subfinder -d example.com -timeout 20 -all -silent", desc: "Tuned source response deadlines" },
+      { num: "14", cmd: "subfinder -d example.com -silent | sort -u > subs.txt", desc: "Unique subdomain inventory export" },
+      { num: "15", cmd: "subfinder -d example.com -silent | dnsx -a -silent", desc: "Passive discovery resolution pipeline" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "10 / 13 • ACTIVE DNS",
+    name: "DNSRECON",
+    subtitle: "ACTIVE DNS ENUMERATION",
+    desc: "Active DNS enumeration script for zone transfers (AXFR), SRV records, DNSSEC zone walking, and brute-forcing.",
+    installCmd: "apt install dnsrecon",
+    url: "https://github.com/darkoperator/dnsrecon",
+    commands: [
+      { num: "01", cmd: "dnsrecon -d example.com -t std -a -j standard.json", desc: "Standard records transfer assessment" },
+      { num: "02", cmd: "dnsrecon -d example.com -t brt -D words.txt --threads 10", desc: "Concurrent wordlist hostname discovery" },
+      { num: "03", cmd: "dnsrecon -d example.com -t brt -D words.txt -f", desc: "Wildcard filtered subdomain discovery" },
+      { num: "04", cmd: "dnsrecon -d example.com -t axfr -n ns1.example.com", desc: "Targeted authoritative transfer testing" },
+      { num: "05", cmd: "dnsrecon -d example.com -t srv --threads 10", desc: "Service discovery record enumeration" },
+      { num: "06", cmd: "dnsrecon -r 10.10.10.0/24 -t rvl --threads 10", desc: "Subnet reverse PTR discovery" },
+      { num: "07", cmd: "dnsrecon -d example.com -t crt -j ct.json", desc: "Certificate transparency hostname discovery" },
+      { num: "08", cmd: "dnsrecon -d example.com -t caa --tcp", desc: "CAA policy TCP auditing" },
+      { num: "09", cmd: "dnsrecon -d example.com -t zonewalk --lifetime 5", desc: "DNSSEC NSEC traversal assessment" },
+      { num: "10", cmd: "dnsrecon -d example.com -t std -s -j spf.json", desc: "SPF netblock reverse mapping" },
+      { num: "11", cmd: "dnsrecon -d example.com -t std -k -c ct.csv", desc: "Transparency enriched DNS inventory" },
+      { num: "12", cmd: "dnsrecon -d example.com -t std -w --threads 5", desc: "Whois netblock pivot discovery" },
+      { num: "13", cmd: "dnsrecon -d example.com -t std,axfr,srv -x audit.xml", desc: "Consolidated multitechnique DNS report" },
+      { num: "14", cmd: "dnsrecon -iL domains.txt -t std -j inventory.json", desc: "Multi-domain DNS inventory export" },
+      { num: "15", cmd: "dnsrecon -d example.com -t brt -D words.txt --lifetime 5 --db recon.db", desc: "Persistent resilient hostname enumeration" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "11 / 13 • WEB PROBING",
+    name: "HTTPX",
+    subtitle: "WEB SERVICE FINGERPRINTING",
+    desc: "Fast, multi-purpose HTTP toolkit for web probing, status/tech detection, favicon hashing, and screenshot capture.",
+    installCmd: "go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest",
+    url: "https://github.com/projectdiscovery/httpx",
+    commands: [
+      { num: "01", cmd: "httpx -l subs.txt -sc -title -td -silent", desc: "Web status technology profiling" },
+      { num: "02", cmd: "httpx -l subs.txt -server -ip -cname -silent", desc: "Web infrastructure identity correlation" },
+      { num: "03", cmd: "httpx -l subs.txt -cl -ct -rt -silent", desc: "Content size latency profiling" },
+      { num: "04", cmd: "httpx -l subs.txt -p http:80,8080,https:443,8443 -sc -silent", desc: "Multiport HTTP HTTPS discovery" },
+      { num: "05", cmd: "httpx -l subs.txt -mc 200,301,302 -silent", desc: "Responsive redirect status selection" },
+      { num: "06", cmd: "httpx -l subs.txt -fc 403,404 -silent", desc: "Restricted error response filtering" },
+      { num: "07", cmd: "httpx -l subs.txt -jarm -tls-grab -silent", desc: "TLS fingerprint correlation results" },
+      { num: "08", cmd: "httpx -l subs.txt -cdn -asn -silent", desc: "CDN ownership infrastructure fingerprinting" },
+      { num: "09", cmd: "httpx -l subs.txt -http2 -websocket -silent", desc: "Modern protocol support discovery" },
+      { num: "10", cmd: "httpx -l subs.txt -favicon -hash sha256 -silent", desc: "Application fingerprint hash correlation" },
+      { num: "11", cmd: "httpx -l subs.txt -location -sc -silent", desc: "Redirect destination path inspection" },
+      { num: "12", cmd: "httpx -l subs.txt -path /health,/status -sc -silent", desc: "Application health endpoint inspection" },
+      { num: "13", cmd: "httpx -l subs.txt -fd -fep -silent", desc: "Deduplicated error page filtering" },
+      { num: "14", cmd: "httpx -l subs.txt -ss -esb -ehb -j -o screenshots.jsonl", desc: "Visual web inventory capture" },
+      { num: "15", cmd: "httpx -l subs.txt -sc -title -j -rl 30 -o web.jsonl", desc: "Rate limited structured inventory" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "12 / 13 • TLS AUDITING",
+    name: "TLSX",
+    subtitle: "CERTIFICATE & TLS AUDITING",
+    desc: "Fast TLS data grabber for SAN/CN extraction, cipher suite auditing, expired cert detection, and JARM/JA3 fingerprinting.",
+    installCmd: "go install github.com/projectdiscovery/tlsx/cmd/tlsx@latest",
+    url: "https://github.com/projectdiscovery/tlsx",
+    commands: [
+      { num: "01", cmd: "tlsx -l hosts.txt -san -cn -silent", desc: "Certificate hostname relationship discovery" },
+      { num: "02", cmd: "tlsx -l hosts.txt -tv -cipher -silent", desc: "Negotiated TLS cipher identification" },
+      { num: "03", cmd: "tlsx -l hosts.txt -ce -ct weak -silent", desc: "Weak cipher suite enumeration" },
+      { num: "04", cmd: "tlsx -l hosts.txt -ex -silent", desc: "Expired certificate exposure filtering" },
+      { num: "05", cmd: "tlsx -l hosts.txt -ss -mm -silent", desc: "Self-signed mismatched certificate checks" },
+      { num: "06", cmd: "tlsx -l hosts.txt -un -re -silent", desc: "Trust revocation anomaly detection" },
+      { num: "07", cmd: "tlsx -l hosts.txt -jarm -ja3 -silent", desc: "Dual TLS fingerprint collection" },
+      { num: "08", cmd: "tlsx -l hosts.txt -hash sha256 -se -silent", desc: "Certificate hash serial inventory" },
+      { num: "09", cmd: "tlsx -l hosts.txt -ve -silent", desc: "Supported TLS version enumeration" },
+      { num: "10", cmd: "tlsx -u example.com -min-version tls12 -tv", desc: "Modern TLS negotiation verification" },
+      { num: "11", cmd: "tlsx -u example.com -max-version tls11 -tv", desc: "Legacy TLS compatibility detection" },
+      { num: "12", cmd: "tlsx -l hosts.txt -p 443,8443 -san -silent", desc: "Multiport certificate hostname discovery" },
+      { num: "13", cmd: "tlsx -l hosts.txt -sa -iv 4,6 -cn -silent", desc: "Dual stack certificate mapping" },
+      { num: "14", cmd: "tlsx -l hosts.txt -cert -tc -j -o certs.jsonl", desc: "Complete certificate chain export" },
+      { num: "15", cmd: "tlsx -l hosts.txt -san -cn -ro -silent | sort -u", desc: "Deduplicated certificate hostname extraction" }
+    ]
+  },
+  {
+    category: "16. CLI Usage Cheatsheets (2026)",
+    badge: "13 / 13 • TEMPLATE CHECKS",
+    name: "NUCLEI",
+    subtitle: "TEMPLATE-BASED SECURITY CHECKS",
+    desc: "Fast, customizable vulnerability and misconfiguration scanner powered by community YAML templates.",
+    installCmd: "go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest",
+    url: "https://github.com/projectdiscovery/nuclei",
+    commands: [
+      { num: "01", cmd: "nuclei -l urls.txt -tags tech -severity info -rl 20", desc: "Technology fingerprint template assessment" },
+      { num: "02", cmd: "nuclei -l urls.txt -tags misconfig -severity low,medium -rl 20", desc: "Security configuration issue screening" },
+      { num: "03", cmd: "nuclei -l urls.txt -tags exposure -severity low,medium -rl 20", desc: "Information exposure signal detection" },
+      { num: "04", cmd: "nuclei -l domains.txt -pt dns -severity info,low -rl 10", desc: "DNS template security assessment" },
+      { num: "05", cmd: "nuclei -l urls.txt -pt ssl -severity info,low -rl 10", desc: "TLS template security validation" },
+      { num: "06", cmd: "nuclei -l urls.txt -t http/technologies/ -rl 20", desc: "Specialized HTTP technology detection" },
+      { num: "07", cmd: "nuclei -l urls.txt -t http/misconfiguration/ -rl 20", desc: "HTTP misconfiguration template coverage" },
+      { num: "08", cmd: "nuclei -l urls.txt -etags dos,fuzz -severity medium -rl 15", desc: "Excluded aggressive template categories" },
+      { num: "09", cmd: "nuclei -l urls.txt -s critical,high -etags dos,fuzz -rl 10", desc: "Prioritized high severity checks" },
+      { num: "10", cmd: "nuclei -l urls.txt -as -rl 15", desc: "Technology guided automatic scanning" },
+      { num: "11", cmd: "nuclei -l urls.txt -auto-tech -severity info,low -rl 20", desc: "Product aware template filtering" },
+      { num: "12", cmd: "nuclei -l urls.txt -nt -rl 15", desc: "Recently added template screening" },
+      { num: "13", cmd: "nuclei -l urls.txt -tags tech -j -o nuclei.jsonl", desc: "Structured technology findings export" },
+      { num: "14", cmd: "nuclei -u https://example.com -tags tech -c 5 -bs 5 -rl 10", desc: "Bounded single-host template execution" },
+      { num: "15", cmd: "nuclei -l urls.txt -tags tech -plan scan-plan.jsonl", desc: "Preflight scan cost planning" }
+    ]
+  }
+];
+
 const categories = document.getElementById('categories');
 const toolsEl = document.getElementById('tools');
 const search = document.getElementById('search');
 const platform = document.getElementById('platform');
 let active = 'all';
-const allTools = raw.flatMap((cat, ci)=>cat[1].map((t,ti)=>({category:cat[0],name:t[0].trim(),desc:t[1],cmd:t[2],url:t[3],id:ci+'-'+ti})));
-document.getElementById('categoryTotal').textContent = raw.length;
+
+const standardTools = raw.flatMap((cat, ci)=>cat[1].map((t,ti)=>({
+  type: 'standard',
+  category: cat[0],
+  name: t[0].trim(),
+  desc: t[1],
+  cmd: t[2],
+  url: t[3],
+  id: 'std-'+ci+'-'+ti
+})));
+
+const cliTools = cliCheatsheets.map((t, idx)=>({
+  type: 'cli',
+  category: t.category,
+  badge: t.badge,
+  name: t.name,
+  subtitle: t.subtitle,
+  desc: t.desc,
+  cmd: t.installCmd,
+  url: t.url,
+  commands: t.commands,
+  id: 'cli-'+idx
+}));
+
+const allTools = [...standardTools, ...cliTools];
+const allCategories = [
+  ...raw.map(c=>({ name: c[0], count: c[1].length })),
+  { name: "16. CLI Usage Cheatsheets (2026)", count: cliTools.length }
+];
+
+document.getElementById('categoryTotal').textContent = allCategories.length;
 document.getElementById('toolTotal').textContent = allTools.length;
 
 function safeDomain(url){
@@ -366,7 +757,7 @@ function safeDomain(url){
 function initials(name){return name.trim().split(/\s+/).slice(0,2).map(x=>x[0]||'').join('').toUpperCase();}
 function renderCategories(){
   const total = allTools.length;
-  categories.innerHTML = `<button class="cat ${active==='all'?'active':''}" data-cat="all"><strong>ALL CATEGORIES</strong><small>${total} TOOLS</small></button>` + raw.map(c=>`<button class="cat ${active===c[0]?'active':''}" data-cat="${escapeAttr(c[0])}"><strong>${escapeHTML(c[0])}</strong><small>${c[1].length} TOOLS</small></button>`).join('');
+  categories.innerHTML = `<button class="cat ${active==='all'?'active':''}" data-cat="all"><strong>ALL CATEGORIES</strong><small>${total} TOOLS</small></button>` + allCategories.map(c=>`<button class="cat ${active===c.name?'active':''}" data-cat="${escapeAttr(c.name)}"><strong>${escapeHTML(c.name)}</strong><small>${c.count} TOOLS</small></button>`).join('');
   categories.querySelectorAll('.cat').forEach(b=>b.addEventListener('click',()=>{active=b.dataset.cat;renderCategories();renderTools();}));
 }
 function isBasicUtility(name){
@@ -374,21 +765,82 @@ function isBasicUtility(name){
 }
 function renderTools(){
   const q=search.value.toLowerCase().trim();
-  let list=allTools.filter(t=>(active==='all'||t.category===active)&&(!q||(t.name+' '+t.desc+' '+t.category).toLowerCase().includes(q)));
-  if(platform.value==='termux') list=list.filter(t=>t.cmd.startsWith('pkg install')||t.cmd.startsWith('pip install')||t.cmd.startsWith('go install')||t.cmd.startsWith('npm install')||t.cmd.startsWith('gem install')||t.cmd.startsWith('git clone')||t.cmd==='Android app'||t.cmd==='Android app / official installer');
-  if(platform.value==='linux') list=list.filter(t=>t.cmd.startsWith('apt install')||t.cmd.startsWith('pip install')||t.cmd.startsWith('go install')||t.cmd.startsWith('npm install')||t.cmd.startsWith('gem install'));
+  let list=allTools.filter(t=>{
+    if(active!=='all' && t.category!==active) return false;
+    if(!q) return true;
+    const cliText = t.type==='cli' ? (' '+t.subtitle+' '+t.cmd+' '+t.commands.map(c=>c.cmd+' '+c.desc).join(' ')) : '';
+    return (t.name+' '+t.desc+' '+t.category+cliText).toLowerCase().includes(q);
+  });
+  if(platform.value==='termux') list=list.filter(t=>t.cmd.startsWith('pkg install')||t.cmd.startsWith('pip install')||t.cmd.startsWith('go install')||t.cmd.startsWith('npm install')||t.cmd.startsWith('gem install')||t.cmd.startsWith('git clone')||t.cmd.startsWith('cargo install')||t.cmd==='Android app'||t.cmd==='Android app / official installer');
+  if(platform.value==='linux') list=list.filter(t=>t.cmd.startsWith('apt install')||t.cmd.startsWith('pip install')||t.cmd.startsWith('go install')||t.cmd.startsWith('npm install')||t.cmd.startsWith('gem install')||t.cmd.startsWith('cargo install'));
   document.getElementById('listTitle').textContent=active==='all'?'// ALL SECURITY TOOLS':'// '+active.toUpperCase();
   document.getElementById('count').textContent=list.length+' RESULTS';
   toolsEl.innerHTML=list.length?list.map(t=>{
     const domain=safeDomain(t.url);
     const logoUrl=domain?'https://www.google.com/s2/favicons?domain='+encodeURIComponent(domain)+'&sz=64':'';
+    if(t.type==='cli'){
+      return `<article class="card cli-card" id="${escapeAttr(t.id)}">
+        <div class="card-top">
+          <div class="tool-identity">
+            <span class="tool-logo">${logoUrl?`<img src="${logoUrl}" alt="" loading="lazy" onerror="this.remove();this.parentElement.textContent='${escapeAttr(initials(t.name))}'">`:escapeHTML(initials(t.name))}</span>
+            <div>
+              <h3>${escapeHTML(t.name)} <span style="color:#ff6268;font-size:11px;font-weight:400">// ${escapeHTML(t.subtitle)}</span></h3>
+            </div>
+          </div>
+          <span class="pill">${escapeHTML(t.badge)}</span>
+        </div>
+        <p>${escapeHTML(t.desc)}</p>
+        <div class="cli-install-wrap">
+          <div class="cli-label"><span>INSTALLATION COMMAND</span></div>
+          <div class="cli-install-box">
+            <code>${escapeHTML(t.cmd)}</code>
+            <button class="cli-copy copy" data-command="${escapeAttr(t.cmd)}">COPY INSTALL</button>
+          </div>
+        </div>
+        <div class="cli-label">
+          <span>USAGE COMMANDS (${t.commands.length} COMMANDS)</span>
+          <button type="button" class="cli-toggle" data-target="list-${escapeAttr(t.id)}">EXPAND ALL</button>
+        </div>
+        <div class="cli-list" id="list-${escapeAttr(t.id)}">
+          ${t.commands.map(c=>`<div class="cli-item">
+            <div class="cli-item-head">
+              <span class="cli-num">#${escapeHTML(c.num)}</span>
+              <span class="cli-desc">${escapeHTML(c.desc)}</span>
+            </div>
+            <div class="cli-cmd-row">
+              <code>${escapeHTML(c.cmd)}</code>
+              <button class="cli-copy copy" data-command="${escapeAttr(c.cmd)}">COPY</button>
+            </div>
+          </div>`).join('')}
+        </div>
+        <div class="card-actions">
+          <a class="official" href="${escapeAttr(t.url)}" target="_blank" rel="noopener noreferrer">OFFICIAL WEBSITE ↗</a>
+          <span style="color:#887d7d;font-size:10px">TOP NETWORK SCANNING TOOLS / 2026</span>
+        </div>
+      </article>`;
+    }
     const commandAllowed=isBasicUtility(t.name);
     const commandText=commandAllowed?t.cmd:'Check official documentation; availability depends on your device and platform.';
     return `<article class="card"><div class="card-top"><div class="tool-identity"><span class="tool-logo">${logoUrl?`<img src="${logoUrl}" alt="" loading="lazy" onerror="this.remove();this.parentElement.textContent='${escapeAttr(initials(t.name))}'">`:escapeHTML(initials(t.name))}</span><h3>${escapeHTML(t.name)}</h3></div><span class="pill">SECURITY TOOL</span></div><p>${escapeHTML(t.desc)}</p><div class="command">${escapeHTML(commandText)}</div><div class="card-actions"><a class="official" href="${escapeAttr(t.url)}" target="_blank" rel="noopener noreferrer">OFFICIAL WEBSITE ↗</a>${commandAllowed?`<button class="copy" data-command="${escapeAttr(t.cmd)}">COPY COMMAND</button>`:''}</div></article>`;
   }).join(''):'<div class="empty">NO TOOLS FOUND. TRY ANOTHER SEARCH.</div>';
+
   toolsEl.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
-    try{await navigator.clipboard.writeText(b.dataset.command);b.textContent='COPIED ✓';setTimeout(()=>b.textContent='COPY COMMAND',1300)}
-    catch(e){b.textContent='SELECT & COPY MANUALLY';}
+    const orig = b.textContent;
+    try{
+      await navigator.clipboard.writeText(b.dataset.command);
+      b.textContent='COPIED ✓';
+      setTimeout(()=>b.textContent=orig,1300);
+    }catch(e){
+      b.textContent='FAILED';
+      setTimeout(()=>b.textContent=orig,1300);
+    }
+  }));
+
+  toolsEl.querySelectorAll('.cli-toggle').forEach(btn=>btn.addEventListener('click',()=>{
+    const listEl = document.getElementById(btn.dataset.target);
+    if(!listEl) return;
+    const isExp = listEl.classList.toggle('expanded');
+    btn.textContent = isExp ? 'COLLAPSE' : 'EXPAND ALL';
   }));
 }
 function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
